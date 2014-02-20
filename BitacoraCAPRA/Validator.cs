@@ -11,7 +11,7 @@ namespace BitacoraCAPRA
         { 
         }
         public string _message = string.Empty;
-        //tiene que ser un entero
+        //
         //ie no. de camion, N/S, cantidad de tambos
         //folio
         public bool ValidateNumberInt(string str_num, string str_option = "??")
