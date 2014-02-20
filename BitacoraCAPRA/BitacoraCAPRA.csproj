@@ -62,7 +62,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecoleccionDB.cs" />
-    <Compile Include="Validator.cs" />
     <EmbeddedResource Include="BitacoraCAPRA.resx">
       <DependentUpon>BitacoraCAPRA.cs</DependentUpon>
     </EmbeddedResource>
@@ -85,6 +84,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ValidationLib\ValidationLib.csproj">
+      <Project>{A512066A-3A8F-44F8-80DD-1D8B1854F220}</Project>
+      <Name>ValidationLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

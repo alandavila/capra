@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace BitacoraCAPRA
+namespace ValidationLib
 {
     public class Validator
     {
         public Validator()
-        { 
+        {
         }
         public string _message = string.Empty;
         //
@@ -23,14 +23,14 @@ namespace BitacoraCAPRA
             }
             catch
             {
-                _message = String.Format("El texto en {0} debe ser un entero en el rango 0 - 9999999",str_option);
+                _message = String.Format("El texto en {0} debe ser un entero en el rango 0 - 9999999", str_option);
                 return false;
             }
             if (num >= 0 && num <= 9999999)
                 return true;
             else
             {
-                _message = String.Format("El texto en {0} debe ser un entero en el rango 0 - 9999999",str_option);
+                _message = String.Format("El texto en {0} debe ser un entero en el rango 0 - 9999999", str_option);
                 return false;
             }
         }
@@ -42,7 +42,7 @@ namespace BitacoraCAPRA
             int _minute = 99;
             if (hour.Length != 5 && hour.Length != 4)
             {
-                if(hour.Length <4)
+                if (hour.Length < 4)
                     _message = "La hora tiene digitos de menos";
                 if (hour.Length > 5)
                     _message = "La hora tiene digitos de mas";
@@ -85,7 +85,7 @@ namespace BitacoraCAPRA
         public bool ValidateHourDiff(string hour_initial, string hour_final)
         {
             TimeSpan initial = new TimeSpan();
-            TimeSpan final   = new TimeSpan();
+            TimeSpan final = new TimeSpan();
             try
             {
                 initial = TimeSpan.Parse(hour_initial);
