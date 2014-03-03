@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace BitacoraCAPRA
+namespace DatabaseLib
 {
     public class Cliente
     {
@@ -16,44 +16,44 @@ namespace BitacoraCAPRA
         private string rFC;
         //public List<string> choferes = new List<string>();
         public List<Chofer> choferes = new List<Chofer>();
-       
+
         public Cliente()
         {
         }
         public string ClienteID
         {
-            get { return clienteID;  }
+            get { return clienteID; }
             set { clienteID = value; }
         }
-        public string Nombre 
-        { 
+        public string Nombre
+        {
             get { return nombre; }
             set { nombre = value; }
         }
-        public string Direction 
+        public string Direction
         {
-            get { return direction; } 
-            set { direction = value; } 
+            get { return direction; }
+            set { direction = value; }
         }
-        public string Ciudad 
-        { 
-            get { return ciudad; } 
-            set { ciudad = value; } 
+        public string Ciudad
+        {
+            get { return ciudad; }
+            set { ciudad = value; }
         }
-        public string CodigoPostal 
-        { 
-            get { return codigoPostal; } 
-            set { codigoPostal = value; } 
+        public string CodigoPostal
+        {
+            get { return codigoPostal; }
+            set { codigoPostal = value; }
         }
-        public string Telefono 
-        { 
-            get { return telefono; } 
-            set { telefono = value; } 
+        public string Telefono
+        {
+            get { return telefono; }
+            set { telefono = value; }
         }
-        public string RFC 
-        { 
-            get { return rFC; } 
-            set { rFC = value; } 
+        public string RFC
+        {
+            get { return rFC; }
+            set { rFC = value; }
         }
 
 

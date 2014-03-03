@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using ValidationLib;
+using DatabaseLib;
 
 namespace BitacoraCAPRA
 {
@@ -140,7 +141,7 @@ namespace BitacoraCAPRA
                 //if valid data... crear la clase de validacion de datos
                 try
                 {
-                    bitacora.BitacoraID = BitacoraDB.AddBitacora(bitacora);
+                    bitacora.BitacoraID = DatabaseLib.BitacoraDB.AddBitacora(bitacora);
                     this.DialogResult = DialogResult.OK;
                 }
                 catch (Exception ex)

@@ -5,8 +5,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 
-
-namespace BitacoraCAPRA
+namespace DatabaseLib
 {
     public class Bitacora
     {
@@ -33,40 +32,48 @@ namespace BitacoraCAPRA
         private double iva;
         private double total;
 
-        public Bitacora() 
+        public Bitacora()
         {
             folio++;
-            folioDigit = String.Format("{0:000}",folio);
+            folioDigit = String.Format("{0:000}", folio);
         }
-        public int BitacoraID {
+        public int BitacoraID
+        {
             get { return bitacoraID; }
             set { bitacoraID = value; }
         }
-        public int Folio {
+        public int Folio
+        {
             get { return folio; }
-            set { folio = value;}
+            set { folio = value; }
         }
-        public string FolioDigit {
+        public string FolioDigit
+        {
             get { return folioDigit; }
             set { folioDigit = value; }
         }
-        public int ClienteID {
+        public int ClienteID
+        {
             get { return clienteID; }
             set { clienteID = value; }
         }
-        public int ChoferID {
+        public int ChoferID
+        {
             get { return choferID; }
             set { choferID = value; }
         }
-        public double PrecioUnitario {
+        public double PrecioUnitario
+        {
             get { return precioUnitario; }
             set { precioUnitario = value; }
         }
-        public double Iva {
+        public double Iva
+        {
             get { return iva; }
             set { iva = value; }
         }
-        public double Total {
+        public double Total
+        {
             get { return total; }
             set { total = value; }
         }
@@ -75,9 +82,9 @@ namespace BitacoraCAPRA
             get { return subtotal; }
             set { subtotal = value; }
         }
-        public int Dia 
+        public int Dia
         {
-            get 
+            get
             {
                 return dia;
             }
@@ -214,7 +221,7 @@ namespace BitacoraCAPRA
             "\nHora Entrada: " + horaEntrada +
             "\nHora Salida: " + horaSalida +
             "\nNumero de Tambos: " + numTambos +
-            "\nNS: "+nS+
+            "\nNS: " + nS +
             "\nObservaciones: " + observaciones +
             "\nPrecio Unitario: " + precioUnitario +
             "\nIVA: " + iva +
@@ -233,11 +240,11 @@ namespace BitacoraCAPRA
             else
                 mesDigit = Convert.ToString(mes);
             //001 cambiara a numero de folio en cuando lo implemente
-            string filePath = @directoryPath + "Bitacora_"+diaDigit+mesDigit+year+"_"+folioDigit+".txt";
+            string filePath = @directoryPath + "Bitacora_" + diaDigit + mesDigit + year + "_" + folioDigit + ".txt";
             FileStream fs = null;
             StreamWriter textOut = null;
 
-            if (!Directory.Exists(directoryPath)) 
+            if (!Directory.Exists(directoryPath))
             {
                 Directory.CreateDirectory(directoryPath);
             }
@@ -247,19 +254,19 @@ namespace BitacoraCAPRA
                 textOut = new StreamWriter(fs);
                 //este sera el folio, .. implementar cuando implemente
                 //la base de datos o antes para differenciar archivos
-                textOut.WriteLine("Folio:                "+folioDigit);
-                textOut.WriteLine("Empresa:              "+empresa);
-                textOut.WriteLine("Numero de Camion:     "+numCamion);
-                textOut.WriteLine("Fecha:                "+dia+"/"+mes+"/"+year);
-                textOut.WriteLine("Chofer:               "+chofer);
-                textOut.WriteLine("Hora Entrada:         "+horaEntrada);
-                textOut.WriteLine("Hora Salida:          "+horaSalida);
-                textOut.WriteLine("Numero de Tambos:     "+numTambos);
-                textOut.WriteLine("NS:                   "+nS);
-                textOut.WriteLine("Observaciones:        "+observaciones);
-                textOut.WriteLine("Precio Unitario:      "+precioUnitario);
-                textOut.WriteLine("IVA:                  "+iva);
-                textOut.WriteLine("Total:                "+total);
+                textOut.WriteLine("Folio:                " + folioDigit);
+                textOut.WriteLine("Empresa:              " + empresa);
+                textOut.WriteLine("Numero de Camion:     " + numCamion);
+                textOut.WriteLine("Fecha:                " + dia + "/" + mes + "/" + year);
+                textOut.WriteLine("Chofer:               " + chofer);
+                textOut.WriteLine("Hora Entrada:         " + horaEntrada);
+                textOut.WriteLine("Hora Salida:          " + horaSalida);
+                textOut.WriteLine("Numero de Tambos:     " + numTambos);
+                textOut.WriteLine("NS:                   " + nS);
+                textOut.WriteLine("Observaciones:        " + observaciones);
+                textOut.WriteLine("Precio Unitario:      " + precioUnitario);
+                textOut.WriteLine("IVA:                  " + iva);
+                textOut.WriteLine("Total:                " + total);
                 textOut.Close();
             }
             catch (FileNotFoundException)

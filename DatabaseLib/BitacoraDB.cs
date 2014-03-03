@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
 
-namespace BitacoraCAPRA
+namespace DatabaseLib
 {
     public static class BitacoraDB
     {
@@ -44,7 +44,7 @@ namespace BitacoraCAPRA
                     bitacora.Total = (double)reader["Total"];
                     return bitacora;
                 }
-                else 
+                else
                 {
                     return null;
                 }
@@ -75,21 +75,21 @@ namespace BitacoraCAPRA
             TimeSpan ts = new TimeSpan();
             ts = TimeSpan.Parse(bitacora.HoraEntrada);
             insertCommand.Parameters.AddWithValue("@ClientesID", bitacora.ClienteID);
-            insertCommand.Parameters.AddWithValue("@folio",bitacora.Folio);
-            insertCommand.Parameters.AddWithValue("@CamionNum",bitacora.NumCamion);
-            insertCommand.Parameters.AddWithValue("@NumS",bitacora.NS);
-            insertCommand.Parameters.AddWithValue("@HrEntrada",ts);
+            insertCommand.Parameters.AddWithValue("@folio", bitacora.Folio);
+            insertCommand.Parameters.AddWithValue("@CamionNum", bitacora.NumCamion);
+            insertCommand.Parameters.AddWithValue("@NumS", bitacora.NS);
+            insertCommand.Parameters.AddWithValue("@HrEntrada", ts);
             ts = TimeSpan.Parse(bitacora.HoraSalida);
-            insertCommand.Parameters.AddWithValue("@HrSalida",ts);
-            insertCommand.Parameters.AddWithValue("@CantidadTambos",bitacora.NumTambos);
-            insertCommand.Parameters.AddWithValue("@Observaciones",bitacora.Observaciones);
-            insertCommand.Parameters.AddWithValue("@Dia",bitacora.Dia);
-            insertCommand.Parameters.AddWithValue("@Mes",bitacora.Mes);
-            insertCommand.Parameters.AddWithValue("@Ano",bitacora.Year);
-            insertCommand.Parameters.AddWithValue("@PrecioUnitario",bitacora.PrecioUnitario);
-            insertCommand.Parameters.AddWithValue("@Subtotal",bitacora.Subotal);
-            insertCommand.Parameters.AddWithValue("@IVA",bitacora.Iva);
-            insertCommand.Parameters.AddWithValue("@Total",bitacora.Total);
+            insertCommand.Parameters.AddWithValue("@HrSalida", ts);
+            insertCommand.Parameters.AddWithValue("@CantidadTambos", bitacora.NumTambos);
+            insertCommand.Parameters.AddWithValue("@Observaciones", bitacora.Observaciones);
+            insertCommand.Parameters.AddWithValue("@Dia", bitacora.Dia);
+            insertCommand.Parameters.AddWithValue("@Mes", bitacora.Mes);
+            insertCommand.Parameters.AddWithValue("@Ano", bitacora.Year);
+            insertCommand.Parameters.AddWithValue("@PrecioUnitario", bitacora.PrecioUnitario);
+            insertCommand.Parameters.AddWithValue("@Subtotal", bitacora.Subotal);
+            insertCommand.Parameters.AddWithValue("@IVA", bitacora.Iva);
+            insertCommand.Parameters.AddWithValue("@Total", bitacora.Total);
             insertCommand.Parameters.AddWithValue("@ChoferID", bitacora.ChoferID);
             try
             {
@@ -109,29 +109,29 @@ namespace BitacoraCAPRA
             {
                 connection.Close();
             }
-           
+
         }
         public static bool UpdateBitacora(Bitacora oldBitacora, Bitacora newBitacora)
         {
             SqlConnection connection = RecoleccionDB.GetConnection();
             string strupdate = "UPDATE tblBitacoras SET"
-                +"ClientesID = @newClientesID,"
-                +"ChoferID = @newChoferID,"
-                +"CamionNum = @newCamionNum,"
-                +"NumS = @newNumS,"
-                +"HrEntrada = @newHrEntrada,"
-                +"HrSalida = @newHrSalida,"
-                +"CantidadTambos = @newCantidadTambos,"
-                +"Observaciones  =@newObservaciones,"
-                +"Dia = @newDia,"
-                +"Mes = @newMes,"
-                +"Ano = @newAno,"
-                +"PrecioUnitario = @newPrecioUnitario,"
-                +"Subtotal = @newSubtotal,"
-                +"IVA = @newIVA,"
-                +"Total = @newTotal"
-                +"WHERE "
-                +"ClientesID = @oldClientesID"
+                + "ClientesID = @newClientesID,"
+                + "ChoferID = @newChoferID,"
+                + "CamionNum = @newCamionNum,"
+                + "NumS = @newNumS,"
+                + "HrEntrada = @newHrEntrada,"
+                + "HrSalida = @newHrSalida,"
+                + "CantidadTambos = @newCantidadTambos,"
+                + "Observaciones  =@newObservaciones,"
+                + "Dia = @newDia,"
+                + "Mes = @newMes,"
+                + "Ano = @newAno,"
+                + "PrecioUnitario = @newPrecioUnitario,"
+                + "Subtotal = @newSubtotal,"
+                + "IVA = @newIVA,"
+                + "Total = @newTotal"
+                + "WHERE "
+                + "ClientesID = @oldClientesID"
                 + "AND ChoferID = @oldChoferID,"
                 + "AND CamionNum = @oldCamionNum,"
                 + "AND NumS = @oldNumS,"
@@ -183,7 +183,7 @@ namespace BitacoraCAPRA
             {
                 connection.Open();
                 int rowsAffected = updateCommand.ExecuteNonQuery();
-                if (rowsAffected >0)
+                if (rowsAffected > 0)
                 {
                     return true;
                 }
@@ -192,7 +192,7 @@ namespace BitacoraCAPRA
                     return false;
                 }
             }
-            catch(SqlException ex)
+            catch (SqlException ex)
             {
                 throw ex;
             }
@@ -200,7 +200,7 @@ namespace BitacoraCAPRA
             {
                 connection.Close();
             }
-            
+
         }
         public static bool DeleteBitacora(Bitacora bitacora)
         {
@@ -223,8 +223,8 @@ namespace BitacoraCAPRA
                 + "AND Subtotal = @subtotal "
                 + "AND IVA = @iva "
                 + "AND Total = @total";
-            SqlCommand deletecommand = new SqlCommand(strDelete,connection);
-            deletecommand.Parameters.AddWithValue("@bitacorasID",bitacora.BitacoraID);
+            SqlCommand deletecommand = new SqlCommand(strDelete, connection);
+            deletecommand.Parameters.AddWithValue("@bitacorasID", bitacora.BitacoraID);
             deletecommand.Parameters.AddWithValue("@folio", bitacora.Folio);
             deletecommand.Parameters.AddWithValue("@clientesID", bitacora.ClienteID);
             deletecommand.Parameters.AddWithValue("@choferID", bitacora.ChoferID);
@@ -262,6 +262,4 @@ namespace BitacoraCAPRA
 
         }
     }
-
-
 }
