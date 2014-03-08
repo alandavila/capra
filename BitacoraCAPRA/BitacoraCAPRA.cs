@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using ValidationLib;
 using DatabaseLib;
+using EmpresaMaintenance;
 
 namespace BitacoraCAPRA
 {
@@ -251,6 +252,12 @@ namespace BitacoraCAPRA
                 MessageBox.Show("El NS no es valido:\n" + validator._message, "Cuidado!");
                 this.txtNS.Text = "0";
             }            
+
+        }
+
+        private void btnNuevaEmpresa_Click(object sender, EventArgs e)
+        {
+            EmpresaMaintenance.EmpresaMaintenance frmEmpresaMaintenance = new EmpresaMaintenance.EmpresaMaintenance();
 
         }
 

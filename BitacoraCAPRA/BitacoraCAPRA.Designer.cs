@@ -367,6 +367,7 @@
             this.btnNuevaEmpresa.TabIndex = 37;
             this.btnNuevaEmpresa.Text = "Nueva Empresa";
             this.btnNuevaEmpresa.UseVisualStyleBackColor = true;
+            this.btnNuevaEmpresa.Click += new System.EventHandler(this.btnNuevaEmpresa_Click);
             // 
             // cmbEmpresa
             // 

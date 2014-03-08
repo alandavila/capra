@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
+using System.Windows.Forms;
+
 
 namespace ValidationLib
 {
@@ -103,6 +106,16 @@ namespace ValidationLib
             }
             else
                 return true;
+        }
+        public bool IsPresent(TextBox textBox, string name)
+        {
+            if (textBox.Text == "")
+            {
+                MessageBox.Show(name + " no ha sido capturado(a) ", "Faltan Datos");
+                textBox.Focus();
+                return false;
+            }
+            return true;
         }
     }
 }

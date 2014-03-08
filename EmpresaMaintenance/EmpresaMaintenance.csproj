@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{6EDF4930-EF75-4F2F-9B65-10D63509B9E7}</ProjectGuid>
+    <ProjectGuid>{D91C7471-E826-48DA-8C21-FFB204C9E84A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BitacoraCAPRA</RootNamespace>
-    <AssemblyName>BitacoraCAPRA</AssemblyName>
+    <RootNamespace>EmpresaMaintenance</RootNamespace>
+    <AssemblyName>EmpresaMaintenance</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -36,7 +36,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.SqlXml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,16 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BitacoraCAPRA.cs">
+    <Compile Include="EmpresaMaintenance.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BitacoraCAPRA.Designer.cs">
-      <DependentUpon>BitacoraCAPRA.cs</DependentUpon>
+    <Compile Include="EmpresaMaintenance.Designer.cs">
+      <DependentUpon>EmpresaMaintenance.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="BitacoraCAPRA.resx">
-      <DependentUpon>BitacoraCAPRA.cs</DependentUpon>
+    <EmbeddedResource Include="EmpresaMaintenance.resx">
+      <DependentUpon>EmpresaMaintenance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -67,7 +66,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -82,10 +80,6 @@
     <ProjectReference Include="..\DatabaseLib\DatabaseLib.csproj">
       <Project>{4DB28598-225B-4C55-92A1-EAC19652CE07}</Project>
       <Name>DatabaseLib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EmpresaMaintenance\EmpresaMaintenance.csproj">
-      <Project>{D91C7471-E826-48DA-8C21-FFB204C9E84A}</Project>
-      <Name>EmpresaMaintenance</Name>
     </ProjectReference>
     <ProjectReference Include="..\ValidationLib\ValidationLib.csproj">
       <Project>{A512066A-3A8F-44F8-80DD-1D8B1854F220}</Project>

@@ -9,7 +9,7 @@ namespace DatabaseLib
     {
         private string nombre;
         private string clienteID;
-        private string direction;
+        private string direccion;
         private string ciudad;
         private string codigoPostal;
         private string telefono;
@@ -32,8 +32,8 @@ namespace DatabaseLib
         }
         public string Direction
         {
-            get { return direction; }
-            set { direction = value; }
+            get { return direccion; }
+            set { direccion = value; }
         }
         public string Ciudad
         {
