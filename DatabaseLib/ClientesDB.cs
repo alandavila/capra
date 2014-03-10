@@ -158,5 +158,38 @@ namespace DatabaseLib
 
             return Clientes;
         }
+        public static int AddCliente(Cliente cliente)
+        {
+            SqlConnection connection = RecoleccionDB.GetConnection();
+            string strInsert = "INSERT tblClientes "
+                + "(Nombre,Direccion,CodigoPostal,Ciudad,Telefono,RFC)"
+                + " VALUES (@Nombre,@Direccion,@CodigoPostal,@Ciudad,@Telefono,@RFC)";
+            SqlCommand insertCommand = new SqlCommand(strInsert, connection);
+            insertCommand.Parameters.AddWithValue("@Nombre", cliente.Nombre);
+            insertCommand.Parameters.AddWithValue("@Direccion", cliente.Direction);
+            insertCommand.Parameters.AddWithValue("@CodigoPostal", cliente.CodigoPostal);
+            insertCommand.Parameters.AddWithValue("@Ciudad", cliente.Ciudad);
+            insertCommand.Parameters.AddWithValue("@Telefono", cliente.Telefono);
+            insertCommand.Parameters.AddWithValue("@RFC", cliente.RFC);
+            try
+            {
+                connection.Open();
+                insertCommand.ExecuteNonQuery();
+                string strSelect = "SELECT IDENT_CURRENT('tblClientes') FROM tblClientes";
+                SqlCommand selectCommand = new SqlCommand(strSelect, connection);
+                int clienteID = Convert.ToInt32(selectCommand.ExecuteScalar());
+                return clienteID;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+        }
     }
 }

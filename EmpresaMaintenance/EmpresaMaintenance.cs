@@ -38,7 +38,7 @@ namespace EmpresaMaintenance
                 //Guardar cliente en base de datos
                 try
                 {
-                    //bitacora.BitacoraID = DatabaseLib.BitacoraDB.AddBitacora(bitacora);
+                    nuevo_cliente.ClienteID = DatabaseLib.ClientesDB.AddCliente(nuevo_cliente).ToString();
                     this.DialogResult = DialogResult.OK;
                 }
                 catch (Exception ex)

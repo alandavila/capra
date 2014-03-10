@@ -258,6 +258,8 @@ namespace BitacoraCAPRA
         private void btnNuevaEmpresa_Click(object sender, EventArgs e)
         {
             EmpresaMaintenance.EmpresaMaintenance frmEmpresaMaintenance = new EmpresaMaintenance.EmpresaMaintenance();
+            this.AddOwnedForm(frmEmpresaMaintenance);
+            frmEmpresaMaintenance.Show();
 
         }
 
