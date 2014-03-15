@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using ValidationLib;
 using DatabaseLib;
 using EmpresaMaintenance;
+using ChoferMaintenance;
 
 namespace BitacoraCAPRA
 {
@@ -260,6 +261,18 @@ namespace BitacoraCAPRA
             EmpresaMaintenance.EmpresaMaintenance frmEmpresaMaintenance = new EmpresaMaintenance.EmpresaMaintenance();
             this.AddOwnedForm(frmEmpresaMaintenance);
             frmEmpresaMaintenance.Show();
+        }
+
+        private void BitacoraCAPRA_Enter(object sender, EventArgs e)
+        {
+            this.LoadEmpresaComboBox();
+        }
+
+        private void btnNuevoChofer_Click(object sender, EventArgs e)
+        {
+            NuevoChofer frmChofer = new NuevoChofer();
+            this.AddOwnedForm(frmChofer);
+            frmChofer.Show();
 
         }
 

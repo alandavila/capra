@@ -2,51 +2,40 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data.SqlClient;
 
 namespace DatabaseLib
 {
-    class ChoferesDB
+    public static class ChoferesDB
     {
-        //returns a list of choferes for a given client
-        //PENDING IMPLEMENTATION, CODE BELOW WAS COPIED FROM CLIENTESDB.CS
-        /*       public static List<Cliente> GetClients()
-                {
-                    List<Cliente> Clientes = new List<Cliente>();
-                    SqlConnection connection = RecoleccionDB.GetConnection();
-                    string selectStatement = "SELECT ClientesID, Nombre, Direccion, CodigoPostal,Ciudad,Telefono, RFC"
-                                           + " FROM tblClientes "
-                                           + "ORDER BY Nombre";
-                    SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
-                    try
-                    {
-                        connection.Open();
-                        SqlDataReader reader = selectCommand.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            Cliente cliente = new Cliente();
-                            cliente.ClienteID = reader["ClientesID"].ToString();
-                            cliente.Nombre = reader["Nombre"].ToString();
-                            cliente.Direction = reader["Direccion"].ToString();
-                            cliente.CodigoPostal = reader["CodigoPostal"].ToString();
-                            cliente.Ciudad = reader["Ciudad"].ToString();
-                            cliente.Telefono = reader["Telefono"].ToString();
-                            cliente.RFC = reader["RFC"].ToString();
-                            Clientes.Add(cliente);
-                        }
-                        reader.Close();
-                    }
-                    catch (SqlException ex)
-                    {
-                        //exception will be handled by the code where this class is used
-                        throw ex;
-                    }
-                    finally
-                    {
-                        connection.Close();
-                    }
+        public static int AddChofer(Chofer chofer,int Id_cliente)
+        {
+            SqlConnection connection = RecoleccionDB.GetConnection();
+            string strInsert = "INSERT tblChoferes "
+                + "(Nombre,ClientesID)"
+                + " VALUES (@Nombre,@ClientesID)";
+            SqlCommand insertCommand = new SqlCommand(strInsert, connection);
+            insertCommand.Parameters.AddWithValue("@Nombre", chofer.Nombre);
+            insertCommand.Parameters.AddWithValue("@ClientesID",Id_cliente );
+            try
+            {
+                connection.Open();
+                insertCommand.ExecuteNonQuery();
+                string strSelect = "SELECT IDENT_CURRENT('tblChoferes') FROM tblChoferes";
+                SqlCommand selectCommand = new SqlCommand(strSelect, connection);
+                int choferID = Convert.ToInt32(selectCommand.ExecuteScalar());
+                return choferID;
 
-                    return Clientes;
-                }
-              */
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+        }
     }
 }

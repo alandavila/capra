@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseLib", "DatabaseLib\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpresaMaintenance", "EmpresaMaintenance\EmpresaMaintenance.csproj", "{D91C7471-E826-48DA-8C21-FFB204C9E84A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChoferMaintenance", "ChoferMaintenance\ChoferMaintenance.csproj", "{7ADFA072-5A75-4AC9-A4AF-067B2E8287BC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +75,18 @@ Global
 		{D91C7471-E826-48DA-8C21-FFB204C9E84A}.Release|x64.ActiveCfg = Release|x86
 		{D91C7471-E826-48DA-8C21-FFB204C9E84A}.Release|x86.ActiveCfg = Release|x86
 		{D91C7471-E826-48DA-8C21-FFB204C9E84A}.Release|x86.Build.0 = Release|x86
+		{7ADFA072-5A75-4AC9-A4AF-067B2E8287BC}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{7ADFA072-5A75-4AC9-A4AF-067B2E8287BC}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{7ADFA072-5A75-4AC9-A4AF-067B2E8287BC}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{7ADFA072-5A75-4AC9-A4AF-067B2E8287BC}.Debug|x64.ActiveCfg = Debug|x86
+		{7ADFA072-5A75-4AC9-A4AF-067B2E8287BC}.Debug|x86.ActiveCfg = Debug|x86
+		{7ADFA072-5A75-4AC9-A4AF-067B2E8287BC}.Debug|x86.Build.0 = Debug|x86
+		{7ADFA072-5A75-4AC9-A4AF-067B2E8287BC}.Release|Any CPU.ActiveCfg = Release|x86
+		{7ADFA072-5A75-4AC9-A4AF-067B2E8287BC}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{7ADFA072-5A75-4AC9-A4AF-067B2E8287BC}.Release|Mixed Platforms.Build.0 = Release|x86
+		{7ADFA072-5A75-4AC9-A4AF-067B2E8287BC}.Release|x64.ActiveCfg = Release|x86
+		{7ADFA072-5A75-4AC9-A4AF-067B2E8287BC}.Release|x86.ActiveCfg = Release|x86
+		{7ADFA072-5A75-4AC9-A4AF-067B2E8287BC}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -387,6 +387,7 @@
             this.btnNuevoChofer.TabIndex = 39;
             this.btnNuevoChofer.Text = "Nuevo Chofer";
             this.btnNuevoChofer.UseVisualStyleBackColor = true;
+            this.btnNuevoChofer.Click += new System.EventHandler(this.btnNuevoChofer_Click);
             // 
             // cmbChofer
             // 
@@ -438,6 +439,7 @@
             this.Name = "BitacoraCAPRA";
             this.Text = "Bitacora CAPRA";
             this.TopMost = true;
+            this.Enter += new System.EventHandler(this.BitacoraCAPRA_Enter);
             this.ResumeLayout(false);
             this.PerformLayout();
 
