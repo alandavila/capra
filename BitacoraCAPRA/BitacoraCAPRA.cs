@@ -54,10 +54,18 @@ namespace BitacoraCAPRA
         //populate Empresa combo box
         private void LoadChoferComboBox()
         {
-            choferes = listaClientes[cmbEmpresa.Text.Trim()].choferes;
-            cmbChofer.DataSource = choferes;
-            cmbChofer.DisplayMember = "Nombre";
-            cmbChofer.ValueMember = "ChoferID";
+            try
+            {
+
+                choferes = listaClientes[cmbEmpresa.Text.Trim()].choferes;
+                cmbChofer.DataSource = choferes;
+                cmbChofer.DisplayMember = "Nombre";
+                cmbChofer.ValueMember = "ChoferID";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, ex.GetType().ToString());
+            }
         }
         //populate Empresa combo box
         private void LoadEmpresaComboBox()
@@ -178,9 +186,19 @@ namespace BitacoraCAPRA
         }
         private void cmbChofer_SelectedIndexChanged(object sender, EventArgs e)
         {
-            foreach (Chofer chofi in choferes) {
-                if (chofi.Nombre == this.cmbChofer.Text)
-                    this._choferID = Convert.ToInt32(chofi.ChoferID);
+            try
+            {
+                //if choferes not null do this:
+                foreach (Chofer chofi in choferes)
+                {
+                    if (chofi.Nombre == this.cmbChofer.Text)
+                        this._choferID = Convert.ToInt32(chofi.ChoferID);
+                }
+            }
+            catch /*(Exception ex)*/
+            {
+                MessageBox.Show(String.Format("La empresa {0} aun no contine choferes assignados",this.cmbEmpresa.Text.Trim()),"Faltan datos");
+                //MessageBox.Show(ex.Message, ex.GetType().ToString());
             }
         }
 
@@ -260,7 +278,11 @@ namespace BitacoraCAPRA
         {
             EmpresaMaintenance.EmpresaMaintenance frmEmpresaMaintenance = new EmpresaMaintenance.EmpresaMaintenance();
             this.AddOwnedForm(frmEmpresaMaintenance);
-            frmEmpresaMaintenance.Show();
+            DialogResult result =  frmEmpresaMaintenance.ShowDialog();
+            if (result == DialogResult.OK) 
+            {
+                this.LoadEmpresaComboBox();
+            }
         }
 
         private void BitacoraCAPRA_Enter(object sender, EventArgs e)
@@ -272,7 +294,7 @@ namespace BitacoraCAPRA
         {
             NuevoChofer frmChofer = new NuevoChofer();
             this.AddOwnedForm(frmChofer);
-            frmChofer.Show();
+            DialogResult result  = frmChofer.ShowDialog();
 
         }
 

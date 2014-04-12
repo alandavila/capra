@@ -107,11 +107,12 @@ namespace ValidationLib
             else
                 return true;
         }
-        public bool IsPresent(TextBox textBox, string name)
+        public bool IsPresent(TextBox textBox, string name,bool verbose = true)
         {
             if (textBox.Text == "")
             {
-                MessageBox.Show(name + " no ha sido capturado(a) ", "Faltan Datos");
+                if(verbose)
+                    MessageBox.Show(name + " no ha sido capturado(a) ", "Faltan Datos");
                 textBox.Focus();
                 return false;
             }

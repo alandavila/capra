@@ -16,7 +16,7 @@ namespace DatabaseLib
             //obtener clientes y choferes uniendo las dos bases de datos
             string selectStatement = "SELECT tblClientes.ClientesID, tblClientes.Nombre, tblClientes.Direccion, tblClientes.CodigoPostal,tblClientes.Ciudad,tblClientes.Telefono, tblClientes.RFC,"
                                     + " tblChoferes.ChoferID, tblChoferes.Nombre AS NombreChofer "
-                                    + " FROM tblClientes INNER JOIN tblChoferes "
+                                    + " FROM tblClientes LEFT JOIN tblChoferes "
                                     + " ON tblClientes.ClientesID = tblChoferes.ClientesID "
                                     + "ORDER BY tblClientes.ClientesID";
 
@@ -90,7 +90,7 @@ namespace DatabaseLib
             //obtener clientes y choferes uniendo las dos bases de datos
             string selectStatement = "SELECT tblClientes.ClientesID, tblClientes.Nombre, tblClientes.Direccion, tblClientes.CodigoPostal,tblClientes.Ciudad,tblClientes.Telefono, tblClientes.RFC,"
                                     + " tblChoferes.ChoferID, tblChoferes.Nombre AS NombreChofer "
-                                    + " FROM tblClientes INNER JOIN tblChoferes "
+                                    + " FROM tblClientes LEFT JOIN tblChoferes "
                                     + " ON tblClientes.ClientesID = tblChoferes.ClientesID "
                                     + "ORDER BY tblClientes.ClientesID";
 

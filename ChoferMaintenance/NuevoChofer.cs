@@ -63,6 +63,7 @@ namespace ChoferMaintenance
                 chofer.Nombre = this.txtNombre.Text;
                 int choferID = DatabaseLib.ChoferesDB.AddChofer(chofer, _ClienteID);
             }
+            this.DialogResult = DialogResult.OK;
         }
     }
 }
