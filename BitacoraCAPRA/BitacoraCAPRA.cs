@@ -10,6 +10,7 @@ using ValidationLib;
 using DatabaseLib;
 using EmpresaMaintenance;
 using ChoferMaintenance;
+using ReporteRecoleccion;
 
 namespace BitacoraCAPRA
 {
@@ -296,6 +297,13 @@ namespace BitacoraCAPRA
             this.AddOwnedForm(frmChofer);
             DialogResult result  = frmChofer.ShowDialog();
 
+        }
+
+        private void btnReporte_Click(object sender, EventArgs e)
+        {
+            frmReporteRecoleccion frmRecolection = new frmReporteRecoleccion();
+            this.AddOwnedForm(frmRecolection);
+            DialogResult result = frmRecolection.ShowDialog();
         }
 
     }

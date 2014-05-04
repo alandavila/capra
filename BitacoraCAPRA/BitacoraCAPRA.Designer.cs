@@ -60,6 +60,7 @@
             this.cmbEmpresa = new System.Windows.Forms.ComboBox();
             this.btnNuevoChofer = new System.Windows.Forms.Button();
             this.cmbChofer = new System.Windows.Forms.ComboBox();
+            this.btnReporte = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblCAPRA1
@@ -398,12 +399,23 @@
             this.cmbChofer.TabIndex = 40;
             this.cmbChofer.SelectedIndexChanged += new System.EventHandler(this.cmbChofer_SelectedIndexChanged);
             // 
+            // btnReporte
+            // 
+            this.btnReporte.Location = new System.Drawing.Point(290, 387);
+            this.btnReporte.Name = "btnReporte";
+            this.btnReporte.Size = new System.Drawing.Size(120, 26);
+            this.btnReporte.TabIndex = 41;
+            this.btnReporte.Text = "&Reporte";
+            this.btnReporte.UseVisualStyleBackColor = true;
+            this.btnReporte.Click += new System.EventHandler(this.btnReporte_Click);
+            // 
             // BitacoraCAPRA
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(502, 451);
+            this.Controls.Add(this.btnReporte);
             this.Controls.Add(this.cmbChofer);
             this.Controls.Add(this.btnNuevoChofer);
             this.Controls.Add(this.cmbEmpresa);
@@ -479,6 +491,7 @@
         private System.Windows.Forms.ComboBox cmbEmpresa;
         private System.Windows.Forms.Button btnNuevoChofer;
         private System.Windows.Forms.ComboBox cmbChofer;
+        private System.Windows.Forms.Button btnReporte;
     }
 }
 

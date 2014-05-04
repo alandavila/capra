@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpresaMaintenance", "Empre
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChoferMaintenance", "ChoferMaintenance\ChoferMaintenance.csproj", "{7ADFA072-5A75-4AC9-A4AF-067B2E8287BC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReporteRecoleccion", "ReporteRecoleccion\ReporteRecoleccion.csproj", "{9D520FA2-5B77-477A-B603-981073B763AB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,18 @@ Global
 		{7ADFA072-5A75-4AC9-A4AF-067B2E8287BC}.Release|x64.ActiveCfg = Release|x86
 		{7ADFA072-5A75-4AC9-A4AF-067B2E8287BC}.Release|x86.ActiveCfg = Release|x86
 		{7ADFA072-5A75-4AC9-A4AF-067B2E8287BC}.Release|x86.Build.0 = Release|x86
+		{9D520FA2-5B77-477A-B603-981073B763AB}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{9D520FA2-5B77-477A-B603-981073B763AB}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{9D520FA2-5B77-477A-B603-981073B763AB}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{9D520FA2-5B77-477A-B603-981073B763AB}.Debug|x64.ActiveCfg = Debug|x86
+		{9D520FA2-5B77-477A-B603-981073B763AB}.Debug|x86.ActiveCfg = Debug|x86
+		{9D520FA2-5B77-477A-B603-981073B763AB}.Debug|x86.Build.0 = Debug|x86
+		{9D520FA2-5B77-477A-B603-981073B763AB}.Release|Any CPU.ActiveCfg = Release|x86
+		{9D520FA2-5B77-477A-B603-981073B763AB}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{9D520FA2-5B77-477A-B603-981073B763AB}.Release|Mixed Platforms.Build.0 = Release|x86
+		{9D520FA2-5B77-477A-B603-981073B763AB}.Release|x64.ActiveCfg = Release|x86
+		{9D520FA2-5B77-477A-B603-981073B763AB}.Release|x86.ActiveCfg = Release|x86
+		{9D520FA2-5B77-477A-B603-981073B763AB}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
