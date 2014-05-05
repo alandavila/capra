@@ -34,6 +34,7 @@
             this.dtpFechaFinal = new System.Windows.Forms.DateTimePicker();
             this.lblFolio = new System.Windows.Forms.Label();
             this.txtFolio = new System.Windows.Forms.TextBox();
+            this.btnObtener = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // dtpFechaInicial
@@ -84,11 +85,22 @@
             this.txtFolio.Size = new System.Drawing.Size(100, 20);
             this.txtFolio.TabIndex = 5;
             // 
+            // btnObtener
+            // 
+            this.btnObtener.Location = new System.Drawing.Point(256, 185);
+            this.btnObtener.Name = "btnObtener";
+            this.btnObtener.Size = new System.Drawing.Size(143, 30);
+            this.btnObtener.TabIndex = 6;
+            this.btnObtener.Text = "Obtener";
+            this.btnObtener.UseVisualStyleBackColor = true;
+            this.btnObtener.Click += new System.EventHandler(this.btnObtener_Click);
+            // 
             // frmReporteRecoleccion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(693, 261);
+            this.Controls.Add(this.btnObtener);
             this.Controls.Add(this.txtFolio);
             this.Controls.Add(this.lblFolio);
             this.Controls.Add(this.dtpFechaFinal);
@@ -110,6 +122,7 @@
         private System.Windows.Forms.DateTimePicker dtpFechaFinal;
         private System.Windows.Forms.Label lblFolio;
         private System.Windows.Forms.TextBox txtFolio;
+        private System.Windows.Forms.Button btnObtener;
     }
 }
 

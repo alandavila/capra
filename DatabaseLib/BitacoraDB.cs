@@ -8,11 +8,78 @@ namespace DatabaseLib
 {
     public static class BitacoraDB
     {
+        //get a list of bitacoras
+        public static List<Bitacora> GetBitacoras() 
+        {
+            List<Bitacora> Bitacoras = new List<Bitacora>();
+            SqlConnection connection = RecoleccionDB.GetConnection();
+            string strSelect = "SELECT tblBitacoras.BitacorasID,tblBitacoras.ClientesID, "
+                + " tblClientes.ClientesID"+" ,tblChoferes.ChoferID AS IDchofer"
+                + " FROM tblBitacoras"
+                + " LEFT  JOIN tblClientes ON tblBitacoras.ClientesID = tblClientes.ClientesID "            
+                + " INNER JOIN tblChoferes ON tblClientes.ClientesID = tblChoferes.ClientesID "
+                + " ORDER BY tblBitacoras.BitacorasID";
+            /*
+            string strSelect = "SELECT tblBitacoras.BitacorasID,tblBitacoras.CamionNum,tblBitacoras.NumS,"
+                             + "tblBitacoras.HrEntrada,tblBitacoras.HrSalida,tblBitacoras.CantidadTambos, "
+                             + "tblBitacoras.Dia,tblBitacoras.Mes,tblBitacoras.Ano,tblBitacoras.PrecioUnitario,"
+                             + "tblBitacoras.Subtotal,tblBitacoras.IVA,tblBitacoras.Total, " 
+                             + "tblClientes.ClientesID, tblClientes.Nombre, tblClientes.Direccion, tblClientes.CodigoPostal,tblClientes.Ciudad,tblClientes.Telefono, tblClientes.RFC,"
+                             + "tblChoferes.ChoferID, tblChoferes.Nombre AS NombreChofer "
+                             + "FROM tblBitacoras LEFT JOIN tblClientes ON tblBitacoras.ClientesID = tblClientes.ClientesID "
+                             + " LEFT outer JOIN tblChoferes "
+                             + " ON tblClientes.ClientesID = tblChoferes.ClientesID "
+                             + "ORDER BY tblBitacoras.BitacorasID";
+            */
+            SqlCommand cmdGetbitacoras = new SqlCommand(strSelect, connection);
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = cmdGetbitacoras.ExecuteReader();
+                while (reader.Read())
+                {
+                    Bitacora bitacora = new Bitacora();
+                    bitacora.BitacoraID = (int)reader["BitacorasID"];
+                    bitacora.Folio = 0;
+                    bitacora.ClienteID = (int)reader["ClientesID"];
+                    //if(reader["choferID"]!= null)
+                    bitacora.ChoferID = (int)reader["IDchofer"];
+                //    bitacora.NumCamion = (int)reader["CamionNum"];
+                 //   bitacora.NS = (int)reader["NumS"];
+            /*        bitacora.HoraEntrada = reader["HrEntrada"].ToString();
+                    bitacora.HoraSalida = reader["HrSalida"].ToString();
+                    bitacora.NumTambos = (int)reader["CantidadTambos"];
+                    //bitacora.Observaciones = reader["vservaciones"].ToString();
+                    bitacora.Dia = (int)reader["Dia"];
+                    bitacora.Mes = (int)reader["Mes"];
+                    bitacora.Year = (int)reader["Ano"];
+                    bitacora.PrecioUnitario = (double)reader["PrecioUnitario"];
+                    bitacora.Iva = (double)reader["IVA"];
+                    bitacora.Total = (double)reader["Total"];
+                    bitacora.Chofer = reader["Nombre"].ToString();
+                    bitacora.Empresa = reader["NombreChofer"].ToString();
+                    
+              */      Bitacoras.Add(bitacora);
+                }
+                reader.Close();
+            }
+            catch (Exception ex)
+            {
+                //external code will take care of exception
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            return Bitacoras;
+
+        }
         //get bitacora by BitacorasID, change later to folio!!s
         public static Bitacora GetBitacora(int BitacoraID)
         {
             SqlConnection connection = RecoleccionDB.GetConnection();
-            string strSelect = "SELECT BitacoraID,folio, ClientesID, ChoferID, CamionNum,"
+            string strSelect = "SELECT BitacorasID,folio, ClientesID, ChoferID, CamionNum,"
                               + "NumS, HrEntrada, HrSalida, CantidadTambos, Observaciones,"
                               + "Dia, Mes, Ano, PrecioUnitario, Subtotal, IVA, Total"
                               + " FROM tblBitacoras WHERE BitacoraID = @BitacoraID";
