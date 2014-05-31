@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.SqlClient;
+using System.IO;
 
 namespace DatabaseLib
 {
@@ -13,64 +14,106 @@ namespace DatabaseLib
         {
             List<Bitacora> Bitacoras = new List<Bitacora>();
             SqlConnection connection = RecoleccionDB.GetConnection();
-            string strSelect = "SELECT tblBitacoras.BitacorasID,tblBitacoras.ClientesID, "
-                + " tblClientes.ClientesID"+" ,tblChoferes.ChoferID AS IDchofer"
+            string strSelect =
+                  " SELECT tblBitacoras.BitacorasID,tblBitacoras.ClientesID"
+                + ",tblBitacoras.CamionNum,tblBitacoras.NumS,tblBitacoras.HrEntrada"
+                + ",tblBitacoras.HrSalida, tblBitacoras.Observaciones,tblBitacoras.CantidadTambos"
+                + ",tblBitacoras.Dia,tblBitacoras.Mes,tblBitacoras.Ano"
+                + ",tblBitacoras.PrecioUnitario,tblBitacoras.Subtotal,tblBitacoras.IVA,tblBitacoras.Total"
+                + ",tblClientes.Nombre,tblChoferes.Nombre AS ChofiName"
+                +" ,tblChoferes.ChoferID AS IDchofer"
                 + " FROM tblBitacoras"
-                + " LEFT  JOIN tblClientes ON tblBitacoras.ClientesID = tblClientes.ClientesID "            
-                + " INNER JOIN tblChoferes ON tblClientes.ClientesID = tblChoferes.ClientesID "
+                + " LEFT JOIN tblClientes ON tblBitacoras.ClientesID = tblClientes.ClientesID "
+                + " LEFT JOIN tblChoferes ON tblBitacoras.ChoferID = tblChoferes.ChoferID"
                 + " ORDER BY tblBitacoras.BitacorasID";
-            /*
-            string strSelect = "SELECT tblBitacoras.BitacorasID,tblBitacoras.CamionNum,tblBitacoras.NumS,"
-                             + "tblBitacoras.HrEntrada,tblBitacoras.HrSalida,tblBitacoras.CantidadTambos, "
-                             + "tblBitacoras.Dia,tblBitacoras.Mes,tblBitacoras.Ano,tblBitacoras.PrecioUnitario,"
-                             + "tblBitacoras.Subtotal,tblBitacoras.IVA,tblBitacoras.Total, " 
-                             + "tblClientes.ClientesID, tblClientes.Nombre, tblClientes.Direccion, tblClientes.CodigoPostal,tblClientes.Ciudad,tblClientes.Telefono, tblClientes.RFC,"
-                             + "tblChoferes.ChoferID, tblChoferes.Nombre AS NombreChofer "
-                             + "FROM tblBitacoras LEFT JOIN tblClientes ON tblBitacoras.ClientesID = tblClientes.ClientesID "
-                             + " LEFT outer JOIN tblChoferes "
-                             + " ON tblClientes.ClientesID = tblChoferes.ClientesID "
-                             + "ORDER BY tblBitacoras.BitacorasID";
-            */
+
             SqlCommand cmdGetbitacoras = new SqlCommand(strSelect, connection);
+            string directoryPath = Properties.Settings.Default.FolderReciclados;
+            string filePath = @directoryPath + "BitacoraErase.txt";
+            FileStream fs = null;
+            StreamWriter textOut = null;
+
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
             try
             {
-                connection.Open();
-                SqlDataReader reader = cmdGetbitacoras.ExecuteReader();
-                while (reader.Read())
+                fs = new FileStream(filePath, FileMode.Create, FileAccess.Write);
+                textOut = new StreamWriter(fs);
+
+                try
                 {
-                    Bitacora bitacora = new Bitacora();
-                    bitacora.BitacoraID = (int)reader["BitacorasID"];
-                    bitacora.Folio = 0;
-                    bitacora.ClienteID = (int)reader["ClientesID"];
-                    //if(reader["choferID"]!= null)
-                    bitacora.ChoferID = (int)reader["IDchofer"];
-                //    bitacora.NumCamion = (int)reader["CamionNum"];
-                 //   bitacora.NS = (int)reader["NumS"];
-            /*        bitacora.HoraEntrada = reader["HrEntrada"].ToString();
-                    bitacora.HoraSalida = reader["HrSalida"].ToString();
-                    bitacora.NumTambos = (int)reader["CantidadTambos"];
-                    //bitacora.Observaciones = reader["vservaciones"].ToString();
-                    bitacora.Dia = (int)reader["Dia"];
-                    bitacora.Mes = (int)reader["Mes"];
-                    bitacora.Year = (int)reader["Ano"];
-                    bitacora.PrecioUnitario = (double)reader["PrecioUnitario"];
-                    bitacora.Iva = (double)reader["IVA"];
-                    bitacora.Total = (double)reader["Total"];
-                    bitacora.Chofer = reader["Nombre"].ToString();
-                    bitacora.Empresa = reader["NombreChofer"].ToString();
+                    connection.Open();
+                    SqlDataReader reader = cmdGetbitacoras.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Bitacora bitacora = new Bitacora();
+                        // bitacora.BitacoraID = (int)reader["BitacorasID"];
+                        bitacora.BitacoraID = int.Parse(reader["BitacorasID"].ToString());
+                        bitacora.Folio = 0;
+                        bitacora.ClienteID = int.Parse(reader["ClientesID"].ToString());
+                        textOut.WriteLine("*****************************************************");
+                        textOut.WriteLine("BitacoraID:                " + reader["BitacorasID"].ToString());
+                        textOut.WriteLine("ClienteID:                 " + reader["ClientesID"].ToString());
+                        textOut.WriteLine("Cliente Nombre:            " + reader["Nombre"].ToString());
+                        textOut.WriteLine("ChoferID:                  " + reader["IDchofer"].ToString());
+                        textOut.WriteLine("Chofer Nombre:             " + reader["ChofiName"].ToString());
+                        textOut.WriteLine("Num Camion:                " + reader["CamionNum"].ToString());
+                        textOut.WriteLine("Num S:                     " + reader["NumS"].ToString());
+                        textOut.WriteLine("Hora Entrada:              " + reader["HrEntrada"].ToString());
+                       
+                        //if(reader["choferID"]!= null)
+                        bitacora.ChoferID = int.Parse(reader["IDchofer"].ToString().Trim());
+                        bitacora.NumCamion = int.Parse(reader["CamionNum"].ToString());
+                        bitacora.NS = int.Parse(reader["NumS"].ToString());
+                        bitacora.HoraEntrada = reader["HrEntrada"].ToString();
+                        bitacora.HoraSalida = reader["HrSalida"].ToString();
+                        bitacora.NumTambos = int.Parse(reader["CantidadTambos"].ToString());
+                        bitacora.Observaciones = reader["Observaciones"].ToString();
+                        bitacora.Dia = int.Parse(reader["Dia"].ToString());
+                        bitacora.Mes = int.Parse(reader["Mes"].ToString());
+                        bitacora.Year = int.Parse(reader["Ano"].ToString());
+                        bitacora.PrecioUnitario = double.Parse(reader["PrecioUnitario"].ToString());
+                        bitacora.Iva = double.Parse(reader["IVA"].ToString());
+                        bitacora.Total = double.Parse(reader["Total"].ToString());
+                        bitacora.Chofer = reader["ChofiName"].ToString();
+                        bitacora.Empresa = reader["Nombre"].ToString();
                     
-              */      Bitacoras.Add(bitacora);
+                        Bitacoras.Add(bitacora);
+                    }
+                    reader.Close();
+                    textOut.Close();
                 }
-                reader.Close();
+                catch (Exception ex)
+                {
+                    //external code will take care of exception
+                    throw ex;
+                }
+                finally
+                {
+                    connection.Close();
+                }
             }
-            catch (Exception ex)
+            catch (FileNotFoundException)
             {
-                //external code will take care of exception
-                throw ex;
+                System.Windows.Forms.MessageBox.Show(filePath + " no fue encontrado.", "Archivo No Encontrado");
+
+            }
+            catch (DirectoryNotFoundException)
+            {
+                System.Windows.Forms.MessageBox.Show(directoryPath + " no fue encontrado.", "Directorio No Enconstrado");
+            }
+            catch (IOException ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message + "Problemas con la creacion del archivo.", "IOException: Problemas con la creacion del archivo");
             }
             finally
             {
-                connection.Close();
+                if (fs != null)
+                    fs.Close();
+
             }
             return Bitacoras;
 
@@ -79,10 +122,14 @@ namespace DatabaseLib
         public static Bitacora GetBitacora(int BitacoraID)
         {
             SqlConnection connection = RecoleccionDB.GetConnection();
-            string strSelect = "SELECT BitacorasID,folio, ClientesID, ChoferID, CamionNum,"
-                              + "NumS, HrEntrada, HrSalida, CantidadTambos, Observaciones,"
-                              + "Dia, Mes, Ano, PrecioUnitario, Subtotal, IVA, Total"
-                              + " FROM tblBitacoras WHERE BitacoraID = @BitacoraID";
+            string strSelect =
+                  " SELECT tblBitacoras.BitacorasID,tblBitacoras.ClientesID"
+                + ",tblBitacoras.CamionNum,tblBitacoras.NumS,tblBitacoras.HrEntrada"
+                + ",tblBitacoras.HrSalida, tblBitacoras.Observaciones,tblBitacoras.CantidadTambos"
+                + ",tblBitacoras.Dia,tblBitacoras.Mes,tblBitacoras.Ano"
+                + ",tblBitacoras.PrecioUnitario,tblBitacoras.Subtotal,tblBitacoras.IVA,tblBitacoras.Total"
+                + ",tblBitacoras.folio,tblBitacoras.ChoferID"
+                + " FROM tblBitacoras WHERE BitacoraID = @BitacoraID";
 
             SqlCommand command = new SqlCommand(strSelect, connection);
             command.Parameters.AddWithValue("@BitacoraID", BitacoraID);
@@ -93,22 +140,22 @@ namespace DatabaseLib
                 if (reader.Read())
                 {
                     Bitacora bitacora = new Bitacora();
-                    bitacora.BitacoraID = (int)reader["BitacoraID"];
-                    bitacora.Folio = (int)reader["folio"];
-                    bitacora.ClienteID = (int)reader["ClientesID"];
-                    bitacora.ChoferID = (int)reader["ChoferID"];
-                    bitacora.NumCamion = (int)reader["CamionNum"];
-                    bitacora.NS = (int)reader["NumS"];
+                    bitacora.BitacoraID = int.Parse(reader["BitacoraID"].ToString());
+                    bitacora.Folio = int.Parse(reader["folio"].ToString());
+                    bitacora.ClienteID = int.Parse(reader["ClientesID"].ToString());
+                    bitacora.ChoferID = int.Parse(reader["ChoferID"].ToString());
+                    bitacora.NumCamion = int.Parse(reader["CamionNum"].ToString());
+                    bitacora.NS = int.Parse(reader["NumS"].ToString());
                     bitacora.HoraEntrada = reader["HrEntrada"].ToString();
                     bitacora.HoraSalida = reader["HrSalida"].ToString();
-                    bitacora.NumTambos = (int)reader["CantidadTambos"];
+                    bitacora.NumTambos = int.Parse(reader["CantidadTambos"].ToString());
                     bitacora.Observaciones = reader["vservaciones"].ToString();
-                    bitacora.Dia = (int)reader["Dia"];
-                    bitacora.Mes = (int)reader["Mes"];
-                    bitacora.Year = (int)reader["Ano"];
-                    bitacora.PrecioUnitario = (double)reader["PrecioUnitario"];
-                    bitacora.Iva = (double)reader["IVA"];
-                    bitacora.Total = (double)reader["Total"];
+                    bitacora.Dia = int.Parse(reader["Dia"].ToString());
+                    bitacora.Mes = int.Parse(reader["Mes"].ToString());
+                    bitacora.Year = int.Parse(reader["Ano"].ToString());
+                    bitacora.PrecioUnitario = double.Parse(reader["PrecioUnitario"].ToString());
+                    bitacora.Iva = double.Parse(reader["IVA"].ToString());
+                    bitacora.Total = double.Parse(reader["Total"].ToString());
                     return bitacora;
                 }
                 else

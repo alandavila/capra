@@ -87,7 +87,7 @@
             // 
             // btnObtener
             // 
-            this.btnObtener.Location = new System.Drawing.Point(256, 185);
+            this.btnObtener.Location = new System.Drawing.Point(264, 236);
             this.btnObtener.Name = "btnObtener";
             this.btnObtener.Size = new System.Drawing.Size(143, 30);
             this.btnObtener.TabIndex = 6;
@@ -99,7 +99,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(693, 261);
+            this.ClientSize = new System.Drawing.Size(724, 300);
             this.Controls.Add(this.btnObtener);
             this.Controls.Add(this.txtFolio);
             this.Controls.Add(this.lblFolio);

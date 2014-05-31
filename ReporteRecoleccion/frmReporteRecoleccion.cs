@@ -20,12 +20,12 @@ namespace ReporteRecoleccion
         private void btnObtener_Click(object sender, EventArgs e)
         {
             List<Bitacora> bitacoras = new List<Bitacora>();
-            bitacoras = BitacoraDB.GetBitacoras();
+            bitacoras = DatabaseLib.BitacoraDB.GetBitacoras(); 
             
             var bitacorasList = from bitacora in bitacoras select bitacora;
             string teststr = "";
             foreach (var bitacora in bitacorasList) { 
-                   teststr += bitacora.BitacoraID+" ";
+                   teststr += bitacora.HoraEntrada +" ";
             }
             MessageBox.Show(teststr,"Empresas en Base de datos ");
        

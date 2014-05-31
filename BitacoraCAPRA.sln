@@ -6,6 +6,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ValidationLib", "ValidationLib\ValidationLib.csproj", "{A512066A-3A8F-44F8-80DD-1D8B1854F220}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseLib", "DatabaseLib\DatabaseLib.csproj", "{4DB28598-225B-4C55-92A1-EAC19652CE07}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A512066A-3A8F-44F8-80DD-1D8B1854F220} = {A512066A-3A8F-44F8-80DD-1D8B1854F220}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmpresaMaintenance", "EmpresaMaintenance\EmpresaMaintenance.csproj", "{D91C7471-E826-48DA-8C21-FFB204C9E84A}"
 EndProject
