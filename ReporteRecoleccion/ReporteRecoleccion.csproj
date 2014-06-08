@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmReporteBitacoras.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReporteBitacoras.Designer.cs">
+      <DependentUpon>frmReporteBitacoras.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmReporteRecoleccion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -54,6 +60,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmReporteBitacoras.resx">
+      <DependentUpon>frmReporteBitacoras.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmReporteRecoleccion.resx">
       <DependentUpon>frmReporteRecoleccion.cs</DependentUpon>
     </EmbeddedResource>
@@ -80,6 +89,10 @@
     <ProjectReference Include="..\DatabaseLib\DatabaseLib.csproj">
       <Project>{4DB28598-225B-4C55-92A1-EAC19652CE07}</Project>
       <Name>DatabaseLib</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ValidationLib\ValidationLib.csproj">
+      <Project>{A512066A-3A8F-44F8-80DD-1D8B1854F220}</Project>
+      <Name>ValidationLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
