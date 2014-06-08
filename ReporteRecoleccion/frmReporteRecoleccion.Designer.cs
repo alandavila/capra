@@ -35,6 +35,12 @@
             this.lblFolio = new System.Windows.Forms.Label();
             this.txtFolio = new System.Windows.Forms.TextBox();
             this.btnObtener = new System.Windows.Forms.Button();
+            this.lvBitacoras = new System.Windows.Forms.ListView();
+            this.colFolio = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colNombre = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colFecha = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colTambos = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colTotal = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // dtpFechaInicial
@@ -95,11 +101,51 @@
             this.btnObtener.UseVisualStyleBackColor = true;
             this.btnObtener.Click += new System.EventHandler(this.btnObtener_Click);
             // 
+            // lvBitacoras
+            // 
+            this.lvBitacoras.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colFolio,
+            this.colNombre,
+            this.colFecha,
+            this.colTambos,
+            this.colTotal});
+            this.lvBitacoras.Location = new System.Drawing.Point(28, 86);
+            this.lvBitacoras.Name = "lvBitacoras";
+            this.lvBitacoras.Size = new System.Drawing.Size(650, 123);
+            this.lvBitacoras.TabIndex = 7;
+            this.lvBitacoras.UseCompatibleStateImageBehavior = false;
+            this.lvBitacoras.View = System.Windows.Forms.View.Details;
+            // 
+            // colFolio
+            // 
+            this.colFolio.Text = "Folio";
+            // 
+            // colNombre
+            // 
+            this.colNombre.Text = "Empresa";
+            this.colNombre.Width = 148;
+            // 
+            // colFecha
+            // 
+            this.colFecha.Text = "Fecha";
+            this.colFecha.Width = 138;
+            // 
+            // colTambos
+            // 
+            this.colTambos.Text = "Tambos";
+            this.colTambos.Width = 101;
+            // 
+            // colTotal
+            // 
+            this.colTotal.Text = "Total";
+            this.colTotal.Width = 112;
+            // 
             // frmReporteRecoleccion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(724, 300);
+            this.Controls.Add(this.lvBitacoras);
             this.Controls.Add(this.btnObtener);
             this.Controls.Add(this.txtFolio);
             this.Controls.Add(this.lblFolio);
@@ -123,6 +169,12 @@
         private System.Windows.Forms.Label lblFolio;
         private System.Windows.Forms.TextBox txtFolio;
         private System.Windows.Forms.Button btnObtener;
+        private System.Windows.Forms.ListView lvBitacoras;
+        private System.Windows.Forms.ColumnHeader colFolio;
+        private System.Windows.Forms.ColumnHeader colNombre;
+        private System.Windows.Forms.ColumnHeader colFecha;
+        private System.Windows.Forms.ColumnHeader colTambos;
+        private System.Windows.Forms.ColumnHeader colTotal;
     }
 }
 

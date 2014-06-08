@@ -60,8 +60,8 @@ namespace DatabaseLib
                         textOut.WriteLine("Cliente Nombre:            " + reader["Nombre"].ToString());
                         textOut.WriteLine("ChoferID:                  " + reader["IDchofer"].ToString());
                         textOut.WriteLine("Chofer Nombre:             " + reader["ChofiName"].ToString());
-                        textOut.WriteLine("Num Camion:                " + reader["CamionNum"].ToString());
-                        textOut.WriteLine("Num S:                     " + reader["NumS"].ToString());
+                        textOut.WriteLine("Num Tambos:                " + reader["CantidadTambos"].ToString());
+                        textOut.WriteLine("Num Total:                     " + reader["Total"].ToString());
                         textOut.WriteLine("Hora Entrada:              " + reader["HrEntrada"].ToString());
                        
                         //if(reader["choferID"]!= null)

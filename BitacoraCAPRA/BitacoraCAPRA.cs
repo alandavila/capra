@@ -279,7 +279,7 @@ namespace BitacoraCAPRA
         {
             EmpresaMaintenance.EmpresaMaintenance frmEmpresaMaintenance = new EmpresaMaintenance.EmpresaMaintenance();
             this.AddOwnedForm(frmEmpresaMaintenance);
-            DialogResult result =  frmEmpresaMaintenance.ShowDialog();
+            DialogResult result =  frmEmpresaMaintenance.ShowDialog(this);
             if (result == DialogResult.OK) 
             {
                 this.LoadEmpresaComboBox();
@@ -295,7 +295,7 @@ namespace BitacoraCAPRA
         {
             NuevoChofer frmChofer = new NuevoChofer();
             this.AddOwnedForm(frmChofer);
-            DialogResult result  = frmChofer.ShowDialog();
+            DialogResult result  = frmChofer.ShowDialog(this);
 
         }
 
@@ -303,7 +303,7 @@ namespace BitacoraCAPRA
         {
             frmReporteRecoleccion frmRecolection = new frmReporteRecoleccion();
             this.AddOwnedForm(frmRecolection);
-            DialogResult result = frmRecolection.ShowDialog();
+            DialogResult result = frmRecolection.ShowDialog(this);
         }
 
     }
