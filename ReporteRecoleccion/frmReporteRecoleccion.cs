@@ -35,7 +35,7 @@ namespace ReporteRecoleccion
             List<Bitacora> queriedBitacoras =  new List<Bitacora>();
             Validator validator = new Validator();
         
-            if (this.chkFolio.Enabled == true) 
+            if (this.chkFolio.Checked == true) 
             {
                 if(this.txtFolio.Text != string.Empty)
                 {
@@ -56,24 +56,15 @@ namespace ReporteRecoleccion
             }
             else
             {
-                if (this.chkFecha.Enabled == true)
+                if (this.chkFecha.Checked == true)
                 {
-                    if (this.cmbChofer.Text == "Chofer" && this.cmbEmpresa.Text == "Empresa") 
-                    {
+                    if (this.cmbChofer.Text != String.Empty && this.cmbEmpresa.Text != String.Empty) 
+                    {              
                         queriedBitacoras = (from bitacora in bitacoras
-                                            where (DateTime.Parse(bitacora.HoraEntrada) >= dtpFechaInicial.Value.Date) && ((DateTime.Parse(bitacora.HoraSalida) <= dtpFechaFinal.Value.Date))
-                                            select bitacora).ToList<Bitacora>();
-                    }
-                    else if (this.cmbChofer.Text == "Chofer" && this.cmbEmpresa.Text != "Empresa")
-                    {
-                        queriedBitacoras = (from bitacora in bitacoras
-                                            where (DateTime.Parse(bitacora.HoraEntrada) >= dtpFechaInicial.Value.Date) && ((DateTime.Parse(bitacora.HoraSalida) <= dtpFechaFinal.Value.Date) && this.cmbEmpresa.Text == bitacora.Empresa)
-                                            select bitacora).ToList<Bitacora>();
-                    }
-                    else if (this.cmbChofer.Text != "Chofer" && this.cmbEmpresa.Text == "Empresa")
-                    {
-                        queriedBitacoras = (from bitacora in bitacoras
-                                            where (DateTime.Parse(bitacora.HoraEntrada) >= dtpFechaInicial.Value.Date) && ((DateTime.Parse(bitacora.HoraSalida) <= dtpFechaFinal.Value.Date) && this.cmbChofer.Text == bitacora.Chofer)
+                                            where (
+                                                DateTime.Parse(bitacora.Mes.ToString()+"/"+bitacora.Dia.ToString()+"/"+bitacora.Year.ToString()+" "+bitacora.HoraEntrada) >= dtpFechaInicial.Value.Date)
+                                                && ((DateTime.Parse(bitacora.HoraSalida) <= dtpFechaFinal.Value.Date)
+                                            )
                                             select bitacora).ToList<Bitacora>();
                     }
                 }
@@ -123,9 +114,14 @@ namespace ReporteRecoleccion
                 frmReporteListView.lvListView.Items[i].SubItems.Add(bitacora.Observaciones);
                 i += 1;
             }
-            
-            DialogResult result = frmReporteListView.ShowDialog(this);
 
+              if (queriedBitacoras.Count > 0)
+              {
+                  DialogResult result = frmReporteListView.ShowDialog(this);
+              }
+              else {
+                  MessageBox.Show("No se encontro ninguna bitacora");
+              }
        
         }
 
