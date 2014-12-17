@@ -59,12 +59,14 @@ namespace ReporteRecoleccion
                 if (this.chkFecha.Checked == true)
                 {
                     if (this.cmbChofer.Text != String.Empty && this.cmbEmpresa.Text != String.Empty) 
-                    {              
+                    {
+                        string selectedChofer =  this.cmbChofer.Text.Trim();
+                        string selectedEmpresa = this.cmbEmpresa.Text.Trim();
                         queriedBitacoras = (from bitacora in bitacoras
-                                            where (
-                                                DateTime.Parse(bitacora.Mes.ToString()+"/"+bitacora.Dia.ToString()+"/"+bitacora.Year.ToString()+" "+bitacora.HoraEntrada) >= dtpFechaInicial.Value.Date)
-                                                && ((DateTime.Parse(bitacora.HoraSalida) <= dtpFechaFinal.Value.Date)
-                                            )
+                                            where ( bitacora.Chofer.CompareTo(selectedChofer)==1
+                                                && bitacora.Empresa.CompareTo(selectedEmpresa)==1
+                                                && bitacora.Fecha >= dtpFechaInicial.Value.Date
+                                                && bitacora.Fecha <= dtpFechaFinal.Value.Date)
                                             select bitacora).ToList<Bitacora>();
                     }
                 }
@@ -105,7 +107,7 @@ namespace ReporteRecoleccion
                 frmReporteListView.lvListView.Items.Add(bitacora.BitacoraID.ToString());
                 frmReporteListView.lvListView.Items[i].SubItems.Add(bitacora.Empresa.Trim());
                 frmReporteListView.lvListView.Items[i].SubItems.Add(bitacora.Chofer.Trim());
-                frmReporteListView.lvListView.Items[i].SubItems.Add(bitacora.HoraEntrada.Trim());
+                frmReporteListView.lvListView.Items[i].SubItems.Add(bitacora.Fecha.ToString().Trim());
                 frmReporteListView.lvListView.Items[i].SubItems.Add(bitacora.NumTambos.ToString());
                 frmReporteListView.lvListView.Items[i].SubItems.Add(bitacora.PrecioUnitario.ToString().Trim());
                 frmReporteListView.lvListView.Items[i].SubItems.Add(bitacora.Subotal.ToString().Trim());
@@ -153,6 +155,7 @@ namespace ReporteRecoleccion
                 cmbEmpresa.DisplayMember = "Nombre";
                 cmbEmpresa.ValueMember = "ClienteID";
 
+
             }
             catch (Exception ex)
             {
@@ -164,18 +167,19 @@ namespace ReporteRecoleccion
         //populate Empresa combo box
         private void LoadChoferComboBox()
         {
-            try
-            {
+                try
+                {
 
-                choferes = listaClientes[cmbEmpresa.Text.Trim()].choferes;
-                cmbChofer.DataSource = choferes;
-                cmbChofer.DisplayMember = "Nombre";
-                cmbChofer.ValueMember = "ChoferID";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, ex.GetType().ToString());
-            }
+                    choferes = listaClientes[cmbEmpresa.Text.Trim()].choferes;
+                    cmbChofer.DataSource = choferes;
+                    cmbChofer.DisplayMember = "Nombre";
+                    cmbChofer.ValueMember = "ChoferID";
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, ex.GetType().ToString());
+                }
+
         }
 
         private void cmbEmpresa_SelectedIndexChanged(object sender, EventArgs e)

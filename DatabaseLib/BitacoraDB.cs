@@ -20,6 +20,7 @@ namespace DatabaseLib
                 + ",tblBitacoras.HrSalida, tblBitacoras.Observaciones,tblBitacoras.CantidadTambos"
                 + ",tblBitacoras.Dia,tblBitacoras.Mes,tblBitacoras.Ano"
                 + ",tblBitacoras.PrecioUnitario,tblBitacoras.Subtotal,tblBitacoras.IVA,tblBitacoras.Total"
+                + ",tblBitacoras.Fecha"
                 + ",tblClientes.Nombre,tblChoferes.Nombre AS ChofiName"
                 +" ,tblChoferes.ChoferID AS IDchofer"
                 + " FROM tblBitacoras"
@@ -61,9 +62,10 @@ namespace DatabaseLib
                         textOut.WriteLine("ChoferID:                  " + reader["IDchofer"].ToString());
                         textOut.WriteLine("Chofer Nombre:             " + reader["ChofiName"].ToString());
                         textOut.WriteLine("Num Tambos:                " + reader["CantidadTambos"].ToString());
-                        textOut.WriteLine("Num Total:                     " + reader["Total"].ToString());
+                        textOut.WriteLine("Num Total:                 " + reader["Total"].ToString());
                         textOut.WriteLine("Hora Entrada:              " + reader["HrEntrada"].ToString());
-                       
+                        textOut.WriteLine("Fecha:                     " + reader["Fecha"].ToString());
+
                         //if(reader["choferID"]!= null)
                         bitacora.ChoferID = int.Parse(reader["IDchofer"].ToString().Trim());
                         bitacora.NumCamion = int.Parse(reader["CamionNum"].ToString());
@@ -80,6 +82,7 @@ namespace DatabaseLib
                         bitacora.Total = double.Parse(reader["Total"].ToString());
                         bitacora.Chofer = reader["ChofiName"].ToString();
                         bitacora.Empresa = reader["Nombre"].ToString();
+                        bitacora.Fecha = DateTime.Parse(reader["Fecha"].ToString());
                     
                         Bitacoras.Add(bitacora);
                     }
@@ -127,6 +130,7 @@ namespace DatabaseLib
                 + ",tblBitacoras.CamionNum,tblBitacoras.NumS,tblBitacoras.HrEntrada"
                 + ",tblBitacoras.HrSalida, tblBitacoras.Observaciones,tblBitacoras.CantidadTambos"
                 + ",tblBitacoras.Dia,tblBitacoras.Mes,tblBitacoras.Ano"
+                + ",tblBitacoras.Fecha"
                 + ",tblBitacoras.PrecioUnitario,tblBitacoras.Subtotal,tblBitacoras.IVA,tblBitacoras.Total"
                 + ",tblBitacoras.folio,tblBitacoras.ChoferID"
                 + " FROM tblBitacoras WHERE BitacoraID = @BitacoraID";
@@ -156,6 +160,7 @@ namespace DatabaseLib
                     bitacora.PrecioUnitario = double.Parse(reader["PrecioUnitario"].ToString());
                     bitacora.Iva = double.Parse(reader["IVA"].ToString());
                     bitacora.Total = double.Parse(reader["Total"].ToString());
+                    bitacora.Fecha = DateTime.Parse(reader["Fecha"].ToString());
                     return bitacora;
                 }
                 else
@@ -181,10 +186,10 @@ namespace DatabaseLib
             string strInsert = "INSERT tblBitacoras "
                 + "(ClientesID, folio,CamionNum,NumS,HrEntrada,"
                 + "HrSalida, CantidadTambos, Observaciones,Dia,Mes,Ano,PrecioUnitario,"
-                + "Subtotal,IVA,Total,ChoferID)"
+                + "Subtotal,IVA,Total,Fecha,ChoferID)"
                 + " VALUES (@ClientesID,@folio,@CamionNum,@NumS,@HrEntrada,"
                 + "@HrSalida,@CantidadTambos,@Observaciones,@Dia,@Mes,@Ano,@PrecioUnitario,"
-                + "@Subtotal,@IVA,@Total,@ChoferID)";
+                + "@Subtotal,@IVA,@Total,@Fecha,@ChoferID)";
             SqlCommand insertCommand = new SqlCommand(strInsert, connection);
             TimeSpan ts = new TimeSpan();
             ts = TimeSpan.Parse(bitacora.HoraEntrada);
@@ -205,6 +210,9 @@ namespace DatabaseLib
             insertCommand.Parameters.AddWithValue("@IVA", bitacora.Iva);
             insertCommand.Parameters.AddWithValue("@Total", bitacora.Total);
             insertCommand.Parameters.AddWithValue("@ChoferID", bitacora.ChoferID);
+            insertCommand.Parameters.Add(new SqlParameter("@Fecha", System.Data.SqlDbType.DateTime));
+            insertCommand.Parameters["@Fecha"].Value = bitacora.Fecha;
+            
             try
             {
                 connection.Open();
@@ -244,6 +252,7 @@ namespace DatabaseLib
                 + "Subtotal = @newSubtotal,"
                 + "IVA = @newIVA,"
                 + "Total = @newTotal"
+                + "Fecha = @newFecha"
                 + "WHERE "
                 + "ClientesID = @oldClientesID"
                 + "AND ChoferID = @oldChoferID,"
@@ -292,6 +301,8 @@ namespace DatabaseLib
             updateCommand.Parameters.AddWithValue("@oldSubtotal", oldBitacora.Subotal);
             updateCommand.Parameters.AddWithValue("@oldIVA", oldBitacora.Iva);
             updateCommand.Parameters.AddWithValue("@oldTotal", oldBitacora.Total);
+            updateCommand.Parameters.Add(new SqlParameter("@newFecha", System.Data.SqlDbType.DateTime));
+            updateCommand.Parameters["@newFecha"].Value = newBitacora.Fecha;
 
             try
             {
@@ -336,6 +347,7 @@ namespace DatabaseLib
                 + "AND PrecioUnitario = @precioUnitario "
                 + "AND Subtotal = @subtotal "
                 + "AND IVA = @iva "
+                + "AND Fecha = @fecha"
                 + "AND Total = @total";
             SqlCommand deletecommand = new SqlCommand(strDelete, connection);
             deletecommand.Parameters.AddWithValue("@bitacorasID", bitacora.BitacoraID);
@@ -355,6 +367,8 @@ namespace DatabaseLib
             deletecommand.Parameters.AddWithValue("@subtotal", bitacora.Subotal);
             deletecommand.Parameters.AddWithValue("@iva", bitacora.Iva);
             deletecommand.Parameters.AddWithValue("@total", bitacora.Total);
+            deletecommand.Parameters.Add(new SqlParameter("@fecha", System.Data.SqlDbType.DateTime));
+            deletecommand.Parameters["@fecha"].Value = bitacora.Fecha;
 
             try
             {

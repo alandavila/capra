@@ -31,11 +31,17 @@ namespace DatabaseLib
         private double subtotal;
         private double iva;
         private double total;
+        private DateTime fecha;
 
         public Bitacora()
         {
             folio++;
             folioDigit = String.Format("{0:000}", folio);
+        }
+        public DateTime Fecha 
+        {
+            get { return fecha; }
+            set { fecha = value; }
         }
         public int BitacoraID
         {

@@ -144,6 +144,9 @@ namespace BitacoraCAPRA
                 bitacora.HoraSalida = this.txtHrSalida.Text;
                 bitacora.NumTambos = Convert.ToInt32(this.txtCantidadTambos.Text);
                 bitacora.Observaciones = this.txtObservaciones.Text;
+                String lafechastr = this.cmbMes.Text.Trim() + "/"+ this.cmbDia.Text.Trim()+"/"+this.cmbYear.Text.Trim()+" "+this.txtHrSalida.Text;
+                DateTime lafecha = DateTime.Parse(lafechastr);
+                bitacora.Fecha = lafecha;
                 //Imprimir la informacion
                 MessageBox.Show((string)bitacora.InformationBitacora());
                 //Guardar la informacion en un archivo de texto

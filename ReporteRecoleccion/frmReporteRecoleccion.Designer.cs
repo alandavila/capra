@@ -38,9 +38,9 @@
             this.pnlFolio = new System.Windows.Forms.Panel();
             this.chkFolio = new System.Windows.Forms.CheckBox();
             this.pnlConditions = new System.Windows.Forms.Panel();
-            this.chkFecha = new System.Windows.Forms.CheckBox();
-            this.cmbEmpresa = new System.Windows.Forms.ComboBox();
             this.cmbChofer = new System.Windows.Forms.ComboBox();
+            this.cmbEmpresa = new System.Windows.Forms.ComboBox();
+            this.chkFecha = new System.Windows.Forms.CheckBox();
             this.pnlFolio.SuspendLayout();
             this.pnlConditions.SuspendLayout();
             this.SuspendLayout();
@@ -143,16 +143,14 @@
             this.pnlConditions.Size = new System.Drawing.Size(688, 147);
             this.pnlConditions.TabIndex = 8;
             // 
-            // chkFecha
+            // cmbChofer
             // 
-            this.chkFecha.AutoSize = true;
-            this.chkFecha.Location = new System.Drawing.Point(16, 75);
-            this.chkFecha.Name = "chkFecha";
-            this.chkFecha.Size = new System.Drawing.Size(81, 17);
-            this.chkFecha.TabIndex = 4;
-            this.chkFecha.Text = "Usar Fecha";
-            this.chkFecha.UseVisualStyleBackColor = true;
-            this.chkFecha.CheckedChanged += new System.EventHandler(this.chkFecha_CheckedChanged);
+            this.cmbChofer.FormattingEnabled = true;
+            this.cmbChofer.Location = new System.Drawing.Point(193, 20);
+            this.cmbChofer.Name = "cmbChofer";
+            this.cmbChofer.Size = new System.Drawing.Size(121, 21);
+            this.cmbChofer.TabIndex = 6;
+            this.cmbChofer.Text = "Chofer";
             // 
             // cmbEmpresa
             // 
@@ -165,19 +163,22 @@
             this.cmbEmpresa.SelectedIndexChanged += new System.EventHandler(this.cmbEmpresa_SelectedIndexChanged);
             this.cmbEmpresa.Leave += new System.EventHandler(this.cmbEmpresa_Leave);
             // 
-            // cmbChofer
+            // chkFecha
             // 
-            this.cmbChofer.FormattingEnabled = true;
-            this.cmbChofer.Location = new System.Drawing.Point(193, 20);
-            this.cmbChofer.Name = "cmbChofer";
-            this.cmbChofer.Size = new System.Drawing.Size(121, 21);
-            this.cmbChofer.TabIndex = 6;
-            this.cmbChofer.Text = "Chofer";
+            this.chkFecha.AutoSize = true;
+            this.chkFecha.Location = new System.Drawing.Point(16, 75);
+            this.chkFecha.Name = "chkFecha";
+            this.chkFecha.Size = new System.Drawing.Size(81, 17);
+            this.chkFecha.TabIndex = 4;
+            this.chkFecha.Text = "Usar Fecha";
+            this.chkFecha.UseVisualStyleBackColor = true;
+            this.chkFecha.CheckedChanged += new System.EventHandler(this.chkFecha_CheckedChanged);
             // 
             // frmReporteRecoleccion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(724, 300);
             this.Controls.Add(this.pnlConditions);
             this.Controls.Add(this.pnlFolio);
