@@ -37,5 +37,44 @@ namespace DatabaseLib
             }
 
         }
+        //returns a list of choferes
+        public static List<Chofer> GetChoferes()
+        {
+            List<Chofer> Choferes = new List<Chofer>();
+            SqlConnection connection = RecoleccionDB.GetConnection();
+            //obtener clientes y choferes uniendo las dos bases de datos
+            string selectStatement = "SELECT tblChoferes.ClientesID, tblChoferes.Nombre,"
+                                    + " tblChoferes.ChoferID"
+                                    + " FROM tblChoferes "
+                                    + "ORDER BY tblChoferes.Nombre";
+
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = selectCommand.ExecuteReader();
+                Chofer chofer = new Chofer();
+                while (reader.Read())
+                {
+                    chofer = new Chofer();
+                    chofer.ChoferID = reader["ChoferID"].ToString();
+                    chofer.Nombre = reader["Nombre"].ToString();
+                    Choferes.Add(chofer);
+                }
+                reader.Close();
+                Choferes.Add(chofer);
+            }
+            catch (SqlException ex)
+            {
+                //exception will be handled by the code where this class is used
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return Choferes;
+        }
     }
 }

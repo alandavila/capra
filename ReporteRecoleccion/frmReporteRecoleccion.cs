@@ -16,6 +16,8 @@ namespace ReporteRecoleccion
 
         private int _checkFolio;
         private int _checkFecha;
+        private int _checkEmpresa;
+        private int _checkChofer;
         SortedList<string, Cliente> listaClientes = new SortedList<string, Cliente>();
         List<Cliente> clientes = new List<Cliente>();
         List<Chofer>  choferes = new List<Chofer>();
@@ -25,6 +27,8 @@ namespace ReporteRecoleccion
             InitializeComponent();
             _checkFolio = 0;
             _checkFecha = 0;
+            _checkEmpresa = 0;
+            _checkChofer = 0;
             this.LoadEmpresaComboBox();
         }
 
@@ -34,7 +38,52 @@ namespace ReporteRecoleccion
             bitacoras = DatabaseLib.BitacoraDB.GetBitacoras();
             List<Bitacora> queriedBitacoras =  new List<Bitacora>();
             Validator validator = new Validator();
-        
+            List<string> selectedEmpresa = new List<string>();
+            List<string> selectedChofer = new List<string>();
+            DateTime selectedInitialDate = new DateTime();
+            DateTime selectedFinalDate = new DateTime();
+
+            //assign values to selectedEmpressa list according to user
+            //selections in the GUI for LINQ predicate filters at runtime
+            if (this.chkEmpresa.Checked)
+            {
+                selectedEmpresa.Add(this.cmbEmpresa.Text.Trim());
+            }
+            else 
+            {
+                clientes = ClientesDB.GetClients();
+                foreach (Cliente cliente in clientes) 
+                {
+                    selectedEmpresa.Add(cliente.Nombre.Trim());
+                }
+            }
+            //assign values to selectedChofer list according to user
+            //selections in the GUI for LINQ predicate filters at runtime
+            if (this.chkChofer.Checked) 
+            {
+                selectedChofer.Add(this.cmbChofer.Text.Trim());
+            }
+            else
+            {
+                choferes = ChoferesDB.GetChoferes();
+                foreach (Chofer chofer in choferes) 
+                {
+                    selectedChofer.Add(chofer.Nombre.Trim());
+                }
+            }
+            //assign values to selectedInitialDate/selectedFinalDate according to user
+            //selections in the GUI for LINQ predicate filters at runtime
+            if (this.chkFecha.Checked)
+            {
+                selectedInitialDate = dtpFechaInicial.Value.Date;
+                selectedFinalDate = dtpFechaFinal.Value.Date;
+            }
+            else 
+            {
+                selectedInitialDate = DateTime.Parse("01/01/1901");
+                selectedFinalDate = DateTime.Parse("01/01/2901");
+            }
+
             if (this.chkFolio.Checked == true) 
             {
                 if(this.txtFolio.Text != string.Empty)
@@ -56,52 +105,23 @@ namespace ReporteRecoleccion
             }
             else
             {
-                if (this.chkFecha.Checked == true)
-                {
-                    if (this.cmbChofer.Text != String.Empty && this.cmbEmpresa.Text != String.Empty) 
-                    {
-                        string selectedChofer =  this.cmbChofer.Text.Trim();
-                        string selectedEmpresa = this.cmbEmpresa.Text.Trim();
-                        queriedBitacoras = (from bitacora in bitacoras
-                                            where ( bitacora.Chofer.CompareTo(selectedChofer)==1
-                                                && bitacora.Empresa.CompareTo(selectedEmpresa)==1
-                                                && bitacora.Fecha >= dtpFechaInicial.Value.Date
-                                                && bitacora.Fecha <= dtpFechaFinal.Value.Date)
-                                            select bitacora).ToList<Bitacora>();
-                    }
-                }
-                else 
-                {
-                    if (this.cmbChofer.Text == "Chofer" && this.cmbEmpresa.Text == "Empresa")
-                    {
-                        MessageBox.Show("Favor de especificar chofer y/o empresa.","Faltan Datos");
-                    }
-                    else if (this.cmbChofer.Text == "Chofer" && this.cmbEmpresa.Text != "Empresa")
-                    {
-                        queriedBitacoras = (from bitacora in bitacoras
-                                            where  this.cmbEmpresa.Text == bitacora.Empresa
-                                            select bitacora).ToList<Bitacora>();
-                    }
-                    else if (this.cmbChofer.Text != "Chofer" && this.cmbEmpresa.Text == "Empresa")
-                    {
-                        queriedBitacoras = (from bitacora in bitacoras
-                                            where this.cmbChofer.Text == bitacora.Chofer
-                                            select bitacora).ToList<Bitacora>();
-                    }
-                }
+                queriedBitacoras = (from bitacora in bitacoras
+                                    let chofi = bitacora.Chofer.ToString().Trim()
+                                    let empresa = bitacora.Empresa.ToString().Trim()
+                                    where (
+                                           selectedChofer.Contains(chofi)
+                                        && selectedEmpresa.Contains(empresa)
+                                        && bitacora.Fecha >= selectedInitialDate
+                                        && bitacora.Fecha <= selectedFinalDate
+                                        )
+                                    select bitacora).ToList<Bitacora>();
             }
-/*
-            var bitacorasList = from bitacora in bitacoras
-                                where bitacora.BitacoraID == Numfolio
-                                select bitacora;
- */
+
             int i = 0;
-            //frmReporteListView.FillReport(someclasshere);
             frmReporteBitacoras frmReporteListView = new frmReporteBitacoras();
             this.AddOwnedForm(frmReporteListView);
             
             i = 0;
-//            foreach (var bitacora in bitacorasList)
               foreach (Bitacora bitacora in queriedBitacoras)
             {
                 frmReporteListView.lvListView.Items.Add(bitacora.BitacoraID.ToString());
@@ -218,6 +238,34 @@ namespace ReporteRecoleccion
                 this.dtpFechaInicial.Enabled = false;
             }
             _checkFecha += 1;
+        }
+
+        private void chkEmpresa_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_checkEmpresa % 2 == 0)
+            {
+                this.cmbEmpresa.Enabled = true; 
+            }
+            else
+            {
+                this.cmbEmpresa.Enabled = false;
+            }
+            _checkEmpresa += 1;
+
+        }
+
+        private void chkChofer_CheckedChanged(object sender, EventArgs e)
+        {
+            if (_checkChofer % 2 == 0)
+            {
+                this.cmbChofer.Enabled = true;
+            }
+            else
+            {
+                this.cmbChofer.Enabled = false;
+            }
+            _checkChofer += 1;
+
         }
     }
 }

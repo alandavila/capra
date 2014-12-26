@@ -41,6 +41,8 @@
             this.cmbChofer = new System.Windows.Forms.ComboBox();
             this.cmbEmpresa = new System.Windows.Forms.ComboBox();
             this.chkFecha = new System.Windows.Forms.CheckBox();
+            this.chkEmpresa = new System.Windows.Forms.CheckBox();
+            this.chkChofer = new System.Windows.Forms.CheckBox();
             this.pnlFolio.SuspendLayout();
             this.pnlConditions.SuspendLayout();
             this.SuspendLayout();
@@ -48,7 +50,7 @@
             // dtpFechaInicial
             // 
             this.dtpFechaInicial.Enabled = false;
-            this.dtpFechaInicial.Location = new System.Drawing.Point(117, 100);
+            this.dtpFechaInicial.Location = new System.Drawing.Point(16, 154);
             this.dtpFechaInicial.Name = "dtpFechaInicial";
             this.dtpFechaInicial.Size = new System.Drawing.Size(200, 20);
             this.dtpFechaInicial.TabIndex = 0;
@@ -56,7 +58,7 @@
             // lblFechaInicial
             // 
             this.lblFechaInicial.AutoSize = true;
-            this.lblFechaInicial.Location = new System.Drawing.Point(114, 75);
+            this.lblFechaInicial.Location = new System.Drawing.Point(13, 129);
             this.lblFechaInicial.Name = "lblFechaInicial";
             this.lblFechaInicial.Size = new System.Drawing.Size(70, 13);
             this.lblFechaInicial.TabIndex = 1;
@@ -65,7 +67,7 @@
             // lblFechaFinal
             // 
             this.lblFechaFinal.AutoSize = true;
-            this.lblFechaFinal.Location = new System.Drawing.Point(350, 75);
+            this.lblFechaFinal.Location = new System.Drawing.Point(249, 129);
             this.lblFechaFinal.Name = "lblFechaFinal";
             this.lblFechaFinal.Size = new System.Drawing.Size(65, 13);
             this.lblFechaFinal.TabIndex = 2;
@@ -74,7 +76,7 @@
             // dtpFechaFinal
             // 
             this.dtpFechaFinal.Enabled = false;
-            this.dtpFechaFinal.Location = new System.Drawing.Point(353, 100);
+            this.dtpFechaFinal.Location = new System.Drawing.Point(252, 154);
             this.dtpFechaFinal.Name = "dtpFechaFinal";
             this.dtpFechaFinal.Size = new System.Drawing.Size(200, 20);
             this.dtpFechaFinal.TabIndex = 3;
@@ -98,7 +100,7 @@
             // 
             // btnObtener
             // 
-            this.btnObtener.Location = new System.Drawing.Point(252, 258);
+            this.btnObtener.Location = new System.Drawing.Point(196, 306);
             this.btnObtener.Name = "btnObtener";
             this.btnObtener.Size = new System.Drawing.Size(143, 30);
             this.btnObtener.TabIndex = 6;
@@ -114,7 +116,7 @@
             this.pnlFolio.Controls.Add(this.txtFolio);
             this.pnlFolio.Location = new System.Drawing.Point(24, 22);
             this.pnlFolio.Name = "pnlFolio";
-            this.pnlFolio.Size = new System.Drawing.Size(688, 43);
+            this.pnlFolio.Size = new System.Drawing.Size(540, 43);
             this.pnlFolio.TabIndex = 7;
             // 
             // chkFolio
@@ -131,6 +133,8 @@
             // pnlConditions
             // 
             this.pnlConditions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlConditions.Controls.Add(this.chkChofer);
+            this.pnlConditions.Controls.Add(this.chkEmpresa);
             this.pnlConditions.Controls.Add(this.cmbChofer);
             this.pnlConditions.Controls.Add(this.cmbEmpresa);
             this.pnlConditions.Controls.Add(this.chkFecha);
@@ -140,13 +144,14 @@
             this.pnlConditions.Controls.Add(this.dtpFechaFinal);
             this.pnlConditions.Location = new System.Drawing.Point(24, 83);
             this.pnlConditions.Name = "pnlConditions";
-            this.pnlConditions.Size = new System.Drawing.Size(688, 147);
+            this.pnlConditions.Size = new System.Drawing.Size(540, 208);
             this.pnlConditions.TabIndex = 8;
             // 
             // cmbChofer
             // 
+            this.cmbChofer.Enabled = false;
             this.cmbChofer.FormattingEnabled = true;
-            this.cmbChofer.Location = new System.Drawing.Point(193, 20);
+            this.cmbChofer.Location = new System.Drawing.Point(16, 89);
             this.cmbChofer.Name = "cmbChofer";
             this.cmbChofer.Size = new System.Drawing.Size(121, 21);
             this.cmbChofer.TabIndex = 6;
@@ -154,8 +159,9 @@
             // 
             // cmbEmpresa
             // 
+            this.cmbEmpresa.Enabled = false;
             this.cmbEmpresa.FormattingEnabled = true;
-            this.cmbEmpresa.Location = new System.Drawing.Point(16, 20);
+            this.cmbEmpresa.Location = new System.Drawing.Point(16, 51);
             this.cmbEmpresa.Name = "cmbEmpresa";
             this.cmbEmpresa.Size = new System.Drawing.Size(121, 21);
             this.cmbEmpresa.TabIndex = 5;
@@ -166,7 +172,7 @@
             // chkFecha
             // 
             this.chkFecha.AutoSize = true;
-            this.chkFecha.Location = new System.Drawing.Point(16, 75);
+            this.chkFecha.Location = new System.Drawing.Point(263, 16);
             this.chkFecha.Name = "chkFecha";
             this.chkFecha.Size = new System.Drawing.Size(81, 17);
             this.chkFecha.TabIndex = 4;
@@ -174,12 +180,34 @@
             this.chkFecha.UseVisualStyleBackColor = true;
             this.chkFecha.CheckedChanged += new System.EventHandler(this.chkFecha_CheckedChanged);
             // 
+            // chkEmpresa
+            // 
+            this.chkEmpresa.AutoSize = true;
+            this.chkEmpresa.Location = new System.Drawing.Point(16, 16);
+            this.chkEmpresa.Name = "chkEmpresa";
+            this.chkEmpresa.Size = new System.Drawing.Size(92, 17);
+            this.chkEmpresa.TabIndex = 7;
+            this.chkEmpresa.Text = "Usar Empresa";
+            this.chkEmpresa.UseVisualStyleBackColor = true;
+            this.chkEmpresa.CheckedChanged += new System.EventHandler(this.chkEmpresa_CheckedChanged);
+            // 
+            // chkChofer
+            // 
+            this.chkChofer.AutoSize = true;
+            this.chkChofer.Location = new System.Drawing.Point(140, 16);
+            this.chkChofer.Name = "chkChofer";
+            this.chkChofer.Size = new System.Drawing.Size(82, 17);
+            this.chkChofer.TabIndex = 8;
+            this.chkChofer.Text = "Usar Chofer";
+            this.chkChofer.UseVisualStyleBackColor = true;
+            this.chkChofer.CheckedChanged += new System.EventHandler(this.chkChofer_CheckedChanged);
+            // 
             // frmReporteRecoleccion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(724, 300);
+            this.ClientSize = new System.Drawing.Size(594, 357);
             this.Controls.Add(this.pnlConditions);
             this.Controls.Add(this.pnlFolio);
             this.Controls.Add(this.btnObtener);
@@ -208,6 +236,8 @@
         private System.Windows.Forms.ComboBox cmbChofer;
         private System.Windows.Forms.ComboBox cmbEmpresa;
         private System.Windows.Forms.CheckBox chkFecha;
+        private System.Windows.Forms.CheckBox chkChofer;
+        private System.Windows.Forms.CheckBox chkEmpresa;
     }
 }
 
