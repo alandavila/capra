@@ -133,7 +133,11 @@ namespace DatabaseLib
                 + ",tblBitacoras.Fecha"
                 + ",tblBitacoras.PrecioUnitario,tblBitacoras.Subtotal,tblBitacoras.IVA,tblBitacoras.Total"
                 + ",tblBitacoras.folio,tblBitacoras.ChoferID"
-                + " FROM tblBitacoras WHERE BitacoraID = @BitacoraID";
+                + ",tblClientes.Nombre,tblChoferes.Nombre AS ChofiName"
+                + " FROM tblBitacoras"
+                + " LEFT JOIN tblClientes ON tblBitacoras.ClientesID = tblClientes.ClientesID "
+                + " LEFT JOIN tblChoferes ON tblBitacoras.ChoferID = tblChoferes.ChoferID"
+                + " WHERE BitacoraID = @BitacoraID";
 
             SqlCommand command = new SqlCommand(strSelect, connection);
             command.Parameters.AddWithValue("@BitacoraID", BitacoraID);
@@ -160,6 +164,8 @@ namespace DatabaseLib
                     bitacora.PrecioUnitario = double.Parse(reader["PrecioUnitario"].ToString());
                     bitacora.Iva = double.Parse(reader["IVA"].ToString());
                     bitacora.Total = double.Parse(reader["Total"].ToString());
+                    bitacora.Chofer = reader["ChofiName"].ToString();
+                    bitacora.Empresa = reader["Nombre"].ToString();
                     bitacora.Fecha = DateTime.Parse(reader["Fecha"].ToString());
                     return bitacora;
                 }
