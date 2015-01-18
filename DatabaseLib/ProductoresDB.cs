@@ -17,7 +17,7 @@ namespace DatabaseLib
             SqlCommand insertCommand = new SqlCommand(strInsert, connection);
             insertCommand.Parameters.AddWithValue("@Nombre", productor.Nombre);
             insertCommand.Parameters.AddWithValue("@Direccion",productor.Direccion );
-            insertCommand.Parameters.AddWithValue("@CodigoPostal",productor.CodigoPostal );
+            insertCommand.Parameters.AddWithValue("@CodigoPostal", Convert.ToInt32(productor.CodigoPostal));
             insertCommand.Parameters.AddWithValue("@Ciudad",productor.Ciudad );
             insertCommand.Parameters.AddWithValue("@Telefono",productor.Telefono );
             insertCommand.Parameters.AddWithValue("@RFC", productor.RFC);

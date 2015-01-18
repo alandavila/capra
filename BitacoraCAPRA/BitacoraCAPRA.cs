@@ -11,6 +11,7 @@ using DatabaseLib;
 using EmpresaMaintenance;
 using ChoferMaintenance;
 using ReporteRecoleccion;
+using ProductorMaintenance;
 
 namespace BitacoraCAPRA
 {
@@ -307,6 +308,13 @@ namespace BitacoraCAPRA
             frmReporteRecoleccion frmRecolection = new frmReporteRecoleccion();
             this.AddOwnedForm(frmRecolection);
             DialogResult result = frmRecolection.ShowDialog(this);
+        }
+
+        private void btnNuevoProductor_Click(object sender, EventArgs e)
+        {
+            ProductorMaintenance.ProductorMaintenance frmProductorMaintenance = new ProductorMaintenance.ProductorMaintenance();
+            this.AddOwnedForm(frmProductorMaintenance);
+            DialogResult result = frmProductorMaintenance.ShowDialog(this);
         }
 
     }
