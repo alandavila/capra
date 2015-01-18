@@ -68,6 +68,8 @@
     <Compile Include="ChoferesDB.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="ClientesDB.cs" />
+    <Compile Include="Productor.cs" />
+    <Compile Include="ProductoresDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
