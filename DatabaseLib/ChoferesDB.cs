@@ -42,7 +42,7 @@ namespace DatabaseLib
         {
             List<Chofer> Choferes = new List<Chofer>();
             SqlConnection connection = RecoleccionDB.GetConnection();
-            //obtener clientes y choferes uniendo las dos bases de datos
+            //obtener choferes 
             string selectStatement = "SELECT tblChoferes.ClientesID, tblChoferes.Nombre,"
                                     + " tblChoferes.ChoferID"
                                     + " FROM tblChoferes "

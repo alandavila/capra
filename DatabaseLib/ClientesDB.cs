@@ -82,7 +82,7 @@ namespace DatabaseLib
 
             return Clientes;
         }
-        //returns a sorted list of clients, overloading GetClients
+        //returns a sorted list of clients
         public static SortedList<string, Cliente> GetClientsList()
         {
             SortedList<string, Cliente> Clientes = new SortedList<string, Cliente>();
