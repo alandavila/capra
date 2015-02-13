@@ -56,19 +56,24 @@
             this.txtNS = new System.Windows.Forms.TextBox();
             this.lblFolio = new System.Windows.Forms.Label();
             this.txtFolio = new System.Windows.Forms.TextBox();
-            this.btnNuevaEmpresa = new System.Windows.Forms.Button();
             this.cmbEmpresa = new System.Windows.Forms.ComboBox();
-            this.btnNuevoChofer = new System.Windows.Forms.Button();
             this.cmbChofer = new System.Windows.Forms.ComboBox();
             this.btnReporte = new System.Windows.Forms.Button();
-            this.btnNuevoProductor = new System.Windows.Forms.Button();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.mantenimientoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuMaintenimientoNuevaEmpresa = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuMantenimientoNuevoChofer = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuMantenimientoNuevoProductor = new System.Windows.Forms.ToolStripMenuItem();
+            this.reporteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.assignarProductorEmpresaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblCAPRA1
             // 
             this.lblCAPRA1.AutoSize = true;
             this.lblCAPRA1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCAPRA1.Location = new System.Drawing.Point(110, 9);
+            this.lblCAPRA1.Location = new System.Drawing.Point(111, 31);
             this.lblCAPRA1.Name = "lblCAPRA1";
             this.lblCAPRA1.Size = new System.Drawing.Size(219, 13);
             this.lblCAPRA1.TabIndex = 0;
@@ -77,7 +82,7 @@
             // lblCAPRA2
             // 
             this.lblCAPRA2.AutoSize = true;
-            this.lblCAPRA2.Location = new System.Drawing.Point(135, 31);
+            this.lblCAPRA2.Location = new System.Drawing.Point(136, 53);
             this.lblCAPRA2.Name = "lblCAPRA2";
             this.lblCAPRA2.Size = new System.Drawing.Size(159, 13);
             this.lblCAPRA2.TabIndex = 1;
@@ -86,7 +91,7 @@
             // lblCAPRA3
             // 
             this.lblCAPRA3.AutoSize = true;
-            this.lblCAPRA3.Location = new System.Drawing.Point(165, 53);
+            this.lblCAPRA3.Location = new System.Drawing.Point(166, 75);
             this.lblCAPRA3.Name = "lblCAPRA3";
             this.lblCAPRA3.Size = new System.Drawing.Size(99, 13);
             this.lblCAPRA3.TabIndex = 2;
@@ -95,7 +100,7 @@
             // lblFecha
             // 
             this.lblFecha.AutoSize = true;
-            this.lblFecha.Location = new System.Drawing.Point(34, 94);
+            this.lblFecha.Location = new System.Drawing.Point(35, 116);
             this.lblFecha.Name = "lblFecha";
             this.lblFecha.Size = new System.Drawing.Size(45, 13);
             this.lblFecha.TabIndex = 3;
@@ -104,7 +109,7 @@
             // lblEmpresa
             // 
             this.lblEmpresa.AutoSize = true;
-            this.lblEmpresa.Location = new System.Drawing.Point(34, 118);
+            this.lblEmpresa.Location = new System.Drawing.Point(35, 140);
             this.lblEmpresa.Name = "lblEmpresa";
             this.lblEmpresa.Size = new System.Drawing.Size(62, 13);
             this.lblEmpresa.TabIndex = 4;
@@ -113,7 +118,7 @@
             // lblChofer
             // 
             this.lblChofer.AutoSize = true;
-            this.lblChofer.Location = new System.Drawing.Point(34, 147);
+            this.lblChofer.Location = new System.Drawing.Point(35, 169);
             this.lblChofer.Name = "lblChofer";
             this.lblChofer.Size = new System.Drawing.Size(54, 13);
             this.lblChofer.TabIndex = 5;
@@ -122,7 +127,7 @@
             // lblCamion
             // 
             this.lblCamion.AutoSize = true;
-            this.lblCamion.Location = new System.Drawing.Point(34, 174);
+            this.lblCamion.Location = new System.Drawing.Point(35, 196);
             this.lblCamion.Name = "lblCamion";
             this.lblCamion.Size = new System.Drawing.Size(74, 13);
             this.lblCamion.TabIndex = 6;
@@ -131,7 +136,7 @@
             // lblHrEntrada
             // 
             this.lblHrEntrada.AutoSize = true;
-            this.lblHrEntrada.Location = new System.Drawing.Point(34, 202);
+            this.lblHrEntrada.Location = new System.Drawing.Point(35, 224);
             this.lblHrEntrada.Name = "lblHrEntrada";
             this.lblHrEntrada.Size = new System.Drawing.Size(83, 13);
             this.lblHrEntrada.TabIndex = 7;
@@ -140,7 +145,7 @@
             // lblhrSalida
             // 
             this.lblhrSalida.AutoSize = true;
-            this.lblhrSalida.Location = new System.Drawing.Point(235, 202);
+            this.lblhrSalida.Location = new System.Drawing.Point(236, 224);
             this.lblhrSalida.Name = "lblhrSalida";
             this.lblhrSalida.Size = new System.Drawing.Size(69, 13);
             this.lblhrSalida.TabIndex = 8;
@@ -149,7 +154,7 @@
             // lblRecepcion
             // 
             this.lblRecepcion.AutoSize = true;
-            this.lblRecepcion.Location = new System.Drawing.Point(122, 231);
+            this.lblRecepcion.Location = new System.Drawing.Point(123, 253);
             this.lblRecepcion.Name = "lblRecepcion";
             this.lblRecepcion.Size = new System.Drawing.Size(195, 13);
             this.lblRecepcion.TabIndex = 9;
@@ -158,7 +163,7 @@
             // lblCantidadTambos
             // 
             this.lblCantidadTambos.AutoSize = true;
-            this.lblCantidadTambos.Location = new System.Drawing.Point(34, 256);
+            this.lblCantidadTambos.Location = new System.Drawing.Point(35, 278);
             this.lblCantidadTambos.Name = "lblCantidadTambos";
             this.lblCantidadTambos.Size = new System.Drawing.Size(131, 13);
             this.lblCantidadTambos.TabIndex = 10;
@@ -167,7 +172,7 @@
             // lblObservaciones
             // 
             this.lblObservaciones.AutoSize = true;
-            this.lblObservaciones.Location = new System.Drawing.Point(33, 327);
+            this.lblObservaciones.Location = new System.Drawing.Point(34, 349);
             this.lblObservaciones.Name = "lblObservaciones";
             this.lblObservaciones.Size = new System.Drawing.Size(101, 13);
             this.lblObservaciones.TabIndex = 11;
@@ -175,7 +180,7 @@
             // 
             // txtNoCamion
             // 
-            this.txtNoCamion.Location = new System.Drawing.Point(130, 169);
+            this.txtNoCamion.Location = new System.Drawing.Point(131, 191);
             this.txtNoCamion.Name = "txtNoCamion";
             this.txtNoCamion.Size = new System.Drawing.Size(175, 20);
             this.txtNoCamion.TabIndex = 19;
@@ -183,7 +188,7 @@
             // 
             // txtHrEntrada
             // 
-            this.txtHrEntrada.Location = new System.Drawing.Point(130, 199);
+            this.txtHrEntrada.Location = new System.Drawing.Point(131, 221);
             this.txtHrEntrada.Name = "txtHrEntrada";
             this.txtHrEntrada.Size = new System.Drawing.Size(100, 20);
             this.txtHrEntrada.TabIndex = 20;
@@ -191,7 +196,7 @@
             // 
             // txtHrSalida
             // 
-            this.txtHrSalida.Location = new System.Drawing.Point(310, 199);
+            this.txtHrSalida.Location = new System.Drawing.Point(311, 221);
             this.txtHrSalida.Name = "txtHrSalida";
             this.txtHrSalida.Size = new System.Drawing.Size(100, 20);
             this.txtHrSalida.TabIndex = 21;
@@ -199,7 +204,7 @@
             // 
             // txtCantidadTambos
             // 
-            this.txtCantidadTambos.Location = new System.Drawing.Point(180, 256);
+            this.txtCantidadTambos.Location = new System.Drawing.Point(181, 278);
             this.txtCantidadTambos.Name = "txtCantidadTambos";
             this.txtCantidadTambos.Size = new System.Drawing.Size(103, 20);
             this.txtCantidadTambos.TabIndex = 22;
@@ -207,7 +212,7 @@
             // 
             // txtObservaciones
             // 
-            this.txtObservaciones.Location = new System.Drawing.Point(154, 327);
+            this.txtObservaciones.Location = new System.Drawing.Point(155, 349);
             this.txtObservaciones.Multiline = true;
             this.txtObservaciones.Name = "txtObservaciones";
             this.txtObservaciones.Size = new System.Drawing.Size(321, 47);
@@ -215,7 +220,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(156, 387);
+            this.btnGuardar.Location = new System.Drawing.Point(157, 409);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(120, 26);
             this.btnGuardar.TabIndex = 24;
@@ -226,7 +231,7 @@
             // lblDia
             // 
             this.lblDia.AutoSize = true;
-            this.lblDia.Location = new System.Drawing.Point(127, 90);
+            this.lblDia.Location = new System.Drawing.Point(128, 112);
             this.lblDia.Name = "lblDia";
             this.lblDia.Size = new System.Drawing.Size(28, 13);
             this.lblDia.TabIndex = 25;
@@ -235,7 +240,7 @@
             // lblMes
             // 
             this.lblMes.AutoSize = true;
-            this.lblMes.Location = new System.Drawing.Point(192, 90);
+            this.lblMes.Location = new System.Drawing.Point(193, 112);
             this.lblMes.Name = "lblMes";
             this.lblMes.Size = new System.Drawing.Size(33, 13);
             this.lblMes.TabIndex = 26;
@@ -244,7 +249,7 @@
             // lblAno
             // 
             this.lblAno.AutoSize = true;
-            this.lblAno.Location = new System.Drawing.Point(269, 90);
+            this.lblAno.Location = new System.Drawing.Point(270, 112);
             this.lblAno.Name = "lblAno";
             this.lblAno.Size = new System.Drawing.Size(29, 13);
             this.lblAno.TabIndex = 28;
@@ -261,7 +266,7 @@
             "2018",
             "2019",
             "2020"});
-            this.cmbYear.Location = new System.Drawing.Point(303, 85);
+            this.cmbYear.Location = new System.Drawing.Point(304, 107);
             this.cmbYear.Name = "cmbYear";
             this.cmbYear.Size = new System.Drawing.Size(121, 21);
             this.cmbYear.TabIndex = 30;
@@ -301,7 +306,7 @@
             "29",
             "30",
             "31"});
-            this.cmbDia.Location = new System.Drawing.Point(156, 87);
+            this.cmbDia.Location = new System.Drawing.Point(157, 109);
             this.cmbDia.Name = "cmbDia";
             this.cmbDia.Size = new System.Drawing.Size(34, 21);
             this.cmbDia.TabIndex = 31;
@@ -322,7 +327,7 @@
             "10",
             "11",
             "12"});
-            this.cmbMes.Location = new System.Drawing.Point(227, 85);
+            this.cmbMes.Location = new System.Drawing.Point(228, 107);
             this.cmbMes.Name = "cmbMes";
             this.cmbMes.Size = new System.Drawing.Size(37, 21);
             this.cmbMes.TabIndex = 32;
@@ -330,7 +335,7 @@
             // lblNS
             // 
             this.lblNS.AutoSize = true;
-            this.lblNS.Location = new System.Drawing.Point(34, 291);
+            this.lblNS.Location = new System.Drawing.Point(35, 313);
             this.lblNS.Name = "lblNS";
             this.lblNS.Size = new System.Drawing.Size(27, 13);
             this.lblNS.TabIndex = 33;
@@ -338,7 +343,7 @@
             // 
             // txtNS
             // 
-            this.txtNS.Location = new System.Drawing.Point(181, 291);
+            this.txtNS.Location = new System.Drawing.Point(182, 313);
             this.txtNS.Name = "txtNS";
             this.txtNS.Size = new System.Drawing.Size(102, 20);
             this.txtNS.TabIndex = 34;
@@ -347,7 +352,7 @@
             // lblFolio
             // 
             this.lblFolio.AutoSize = true;
-            this.lblFolio.Location = new System.Drawing.Point(371, 25);
+            this.lblFolio.Location = new System.Drawing.Point(372, 47);
             this.lblFolio.Name = "lblFolio";
             this.lblFolio.Size = new System.Drawing.Size(38, 13);
             this.lblFolio.TabIndex = 35;
@@ -356,45 +361,25 @@
             // txtFolio
             // 
             this.txtFolio.Enabled = false;
-            this.txtFolio.Location = new System.Drawing.Point(421, 22);
+            this.txtFolio.Location = new System.Drawing.Point(422, 44);
             this.txtFolio.Name = "txtFolio";
             this.txtFolio.Size = new System.Drawing.Size(70, 20);
             this.txtFolio.TabIndex = 36;
             // 
-            // btnNuevaEmpresa
-            // 
-            this.btnNuevaEmpresa.Location = new System.Drawing.Point(317, 113);
-            this.btnNuevaEmpresa.Name = "btnNuevaEmpresa";
-            this.btnNuevaEmpresa.Size = new System.Drawing.Size(117, 23);
-            this.btnNuevaEmpresa.TabIndex = 37;
-            this.btnNuevaEmpresa.Text = "Nueva Empresa";
-            this.btnNuevaEmpresa.UseVisualStyleBackColor = true;
-            this.btnNuevaEmpresa.Click += new System.EventHandler(this.btnNuevaEmpresa_Click);
-            // 
             // cmbEmpresa
             // 
             this.cmbEmpresa.FormattingEnabled = true;
-            this.cmbEmpresa.Location = new System.Drawing.Point(130, 113);
+            this.cmbEmpresa.Location = new System.Drawing.Point(131, 135);
             this.cmbEmpresa.Name = "cmbEmpresa";
             this.cmbEmpresa.Size = new System.Drawing.Size(168, 21);
             this.cmbEmpresa.TabIndex = 38;
             this.cmbEmpresa.SelectedIndexChanged += new System.EventHandler(this.cmbEmpresa_SelectedIndexChanged);
             this.cmbEmpresa.Leave += new System.EventHandler(this.cmbEmpresa_Leave);
             // 
-            // btnNuevoChofer
-            // 
-            this.btnNuevoChofer.Location = new System.Drawing.Point(317, 142);
-            this.btnNuevoChofer.Name = "btnNuevoChofer";
-            this.btnNuevoChofer.Size = new System.Drawing.Size(117, 23);
-            this.btnNuevoChofer.TabIndex = 39;
-            this.btnNuevoChofer.Text = "Nuevo Chofer";
-            this.btnNuevoChofer.UseVisualStyleBackColor = true;
-            this.btnNuevoChofer.Click += new System.EventHandler(this.btnNuevoChofer_Click);
-            // 
             // cmbChofer
             // 
             this.cmbChofer.FormattingEnabled = true;
-            this.cmbChofer.Location = new System.Drawing.Point(130, 139);
+            this.cmbChofer.Location = new System.Drawing.Point(131, 161);
             this.cmbChofer.Name = "cmbChofer";
             this.cmbChofer.Size = new System.Drawing.Size(168, 21);
             this.cmbChofer.TabIndex = 40;
@@ -402,7 +387,7 @@
             // 
             // btnReporte
             // 
-            this.btnReporte.Location = new System.Drawing.Point(290, 387);
+            this.btnReporte.Location = new System.Drawing.Point(291, 409);
             this.btnReporte.Name = "btnReporte";
             this.btnReporte.Size = new System.Drawing.Size(120, 26);
             this.btnReporte.TabIndex = 41;
@@ -410,28 +395,71 @@
             this.btnReporte.UseVisualStyleBackColor = true;
             this.btnReporte.Click += new System.EventHandler(this.btnReporte_Click);
             // 
-            // btnNuevoProductor
+            // menuStrip1
             // 
-            this.btnNuevoProductor.Location = new System.Drawing.Point(317, 169);
-            this.btnNuevoProductor.Name = "btnNuevoProductor";
-            this.btnNuevoProductor.Size = new System.Drawing.Size(117, 23);
-            this.btnNuevoProductor.TabIndex = 42;
-            this.btnNuevoProductor.Text = "Nuevo Productor";
-            this.btnNuevoProductor.UseVisualStyleBackColor = true;
-            this.btnNuevoProductor.Click += new System.EventHandler(this.btnNuevoProductor_Click);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mantenimientoToolStripMenuItem,
+            this.reporteToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(527, 24);
+            this.menuStrip1.TabIndex = 43;
+            this.menuStrip1.Text = "mnuMain";
+            // 
+            // mantenimientoToolStripMenuItem
+            // 
+            this.mantenimientoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuMaintenimientoNuevaEmpresa,
+            this.mnuMantenimientoNuevoChofer,
+            this.mnuMantenimientoNuevoProductor,
+            this.assignarProductorEmpresaToolStripMenuItem});
+            this.mantenimientoToolStripMenuItem.Name = "mantenimientoToolStripMenuItem";
+            this.mantenimientoToolStripMenuItem.Size = new System.Drawing.Size(101, 20);
+            this.mantenimientoToolStripMenuItem.Text = "Mantenimiento";
+            // 
+            // mnuMaintenimientoNuevaEmpresa
+            // 
+            this.mnuMaintenimientoNuevaEmpresa.Name = "mnuMaintenimientoNuevaEmpresa";
+            this.mnuMaintenimientoNuevaEmpresa.Size = new System.Drawing.Size(165, 22);
+            this.mnuMaintenimientoNuevaEmpresa.Text = "Nueva Empresa";
+            this.mnuMaintenimientoNuevaEmpresa.Click += new System.EventHandler(this.mnuMaintenimientoNuevaEmpresa_Click);
+            // 
+            // mnuMantenimientoNuevoChofer
+            // 
+            this.mnuMantenimientoNuevoChofer.Name = "mnuMantenimientoNuevoChofer";
+            this.mnuMantenimientoNuevoChofer.Size = new System.Drawing.Size(165, 22);
+            this.mnuMantenimientoNuevoChofer.Text = "Nuevo Chofer";
+            this.mnuMantenimientoNuevoChofer.Click += new System.EventHandler(this.mnuMantenimientoNuevoChofer_Click);
+            // 
+            // mnuMantenimientoNuevoProductor
+            // 
+            this.mnuMantenimientoNuevoProductor.Name = "mnuMantenimientoNuevoProductor";
+            this.mnuMantenimientoNuevoProductor.Size = new System.Drawing.Size(165, 22);
+            this.mnuMantenimientoNuevoProductor.Text = "Nuevo Productor";
+            this.mnuMantenimientoNuevoProductor.Click += new System.EventHandler(this.mnuMantenimientoNuevoProductor_Click);
+            // 
+            // reporteToolStripMenuItem
+            // 
+            this.reporteToolStripMenuItem.Name = "reporteToolStripMenuItem";
+            this.reporteToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.reporteToolStripMenuItem.Text = "Reporte";
+            // 
+            // assignarProductorEmpresaToolStripMenuItem
+            // 
+            this.assignarProductorEmpresaToolStripMenuItem.Name = "assignarProductorEmpresaToolStripMenuItem";
+            this.assignarProductorEmpresaToolStripMenuItem.Size = new System.Drawing.Size(239, 22);
+            this.assignarProductorEmpresaToolStripMenuItem.Text = "Assignar Productor -> Empresa";
+            this.assignarProductorEmpresaToolStripMenuItem.Click += new System.EventHandler(this.assignarProductorEmpresaToolStripMenuItem_Click);
             // 
             // BitacoraCAPRA
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(502, 451);
-            this.Controls.Add(this.btnNuevoProductor);
+            this.ClientSize = new System.Drawing.Size(527, 485);
             this.Controls.Add(this.btnReporte);
             this.Controls.Add(this.cmbChofer);
-            this.Controls.Add(this.btnNuevoChofer);
             this.Controls.Add(this.cmbEmpresa);
-            this.Controls.Add(this.btnNuevaEmpresa);
             this.Controls.Add(this.txtFolio);
             this.Controls.Add(this.lblFolio);
             this.Controls.Add(this.txtNS);
@@ -460,10 +488,14 @@
             this.Controls.Add(this.lblCAPRA3);
             this.Controls.Add(this.lblCAPRA2);
             this.Controls.Add(this.lblCAPRA1);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "BitacoraCAPRA";
             this.Text = "Bitacora CAPRA";
             this.TopMost = true;
             this.Enter += new System.EventHandler(this.BitacoraCAPRA_Enter);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -499,12 +531,16 @@
         private System.Windows.Forms.TextBox txtNS;
         private System.Windows.Forms.Label lblFolio;
         private System.Windows.Forms.TextBox txtFolio;
-        private System.Windows.Forms.Button btnNuevaEmpresa;
         private System.Windows.Forms.ComboBox cmbEmpresa;
-        private System.Windows.Forms.Button btnNuevoChofer;
         private System.Windows.Forms.ComboBox cmbChofer;
         private System.Windows.Forms.Button btnReporte;
-        private System.Windows.Forms.Button btnNuevoProductor;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem mantenimientoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuMaintenimientoNuevaEmpresa;
+        private System.Windows.Forms.ToolStripMenuItem mnuMantenimientoNuevoChofer;
+        private System.Windows.Forms.ToolStripMenuItem mnuMantenimientoNuevoProductor;
+        private System.Windows.Forms.ToolStripMenuItem reporteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem assignarProductorEmpresaToolStripMenuItem;
     }
 }
 

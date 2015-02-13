@@ -70,7 +70,7 @@ namespace DatabaseLib
                     Productores.Add(productor);
                 }
                 reader.Close();
-                Productores.Add(productor);
+               
             }
             catch (SqlException ex)
             {

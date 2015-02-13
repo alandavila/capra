@@ -84,7 +84,7 @@ namespace BitacoraCAPRA
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message,ex.GetType().ToString());
+                MessageBox.Show(ex.Message,ex.GetType().ToString()+": error en LoadEmpresaComboBox");
  
             }
         }
@@ -315,6 +315,38 @@ namespace BitacoraCAPRA
             ProductorMaintenance.ProductorMaintenance frmProductorMaintenance = new ProductorMaintenance.ProductorMaintenance();
             this.AddOwnedForm(frmProductorMaintenance);
             DialogResult result = frmProductorMaintenance.ShowDialog(this);
+        }
+
+        private void mnuMaintenimientoNuevaEmpresa_Click(object sender, EventArgs e)
+        {
+            EmpresaMaintenance.EmpresaMaintenance frmEmpresaMaintenance = new EmpresaMaintenance.EmpresaMaintenance();
+            this.AddOwnedForm(frmEmpresaMaintenance);
+            DialogResult result = frmEmpresaMaintenance.ShowDialog(this);
+            if (result == DialogResult.OK)
+            {
+                this.LoadEmpresaComboBox();
+            }
+        }
+
+        private void mnuMantenimientoNuevoChofer_Click(object sender, EventArgs e)
+        {
+            NuevoChofer frmChofer = new NuevoChofer();
+            this.AddOwnedForm(frmChofer);
+            DialogResult result = frmChofer.ShowDialog(this);
+        }
+
+        private void mnuMantenimientoNuevoProductor_Click(object sender, EventArgs e)
+        {
+            ProductorMaintenance.ProductorMaintenance frmProductorMaintenance = new ProductorMaintenance.ProductorMaintenance();
+            this.AddOwnedForm(frmProductorMaintenance);
+            DialogResult result = frmProductorMaintenance.ShowDialog(this);
+        }
+
+        private void assignarProductorEmpresaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            EmpresaMaintenance.EmpresaProductorLink frmEmpresaProductorLink = new EmpresaMaintenance.EmpresaProductorLink();
+            this.AddOwnedForm(frmEmpresaProductorLink);
+            DialogResult result = frmEmpresaProductorLink.ShowDialog(this);
         }
 
     }

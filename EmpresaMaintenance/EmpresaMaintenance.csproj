@@ -52,10 +52,28 @@
     <Compile Include="EmpresaMaintenance.Designer.cs">
       <DependentUpon>EmpresaMaintenance.cs</DependentUpon>
     </Compile>
+    <Compile Include="EmpresaProductorLink.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmpresaProductorLink.Designer.cs">
+      <DependentUpon>EmpresaProductorLink.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmReasignationDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReasignationDialog.Designer.cs">
+      <DependentUpon>frmReasignationDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="EmpresaMaintenance.resx">
       <DependentUpon>EmpresaMaintenance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EmpresaProductorLink.resx">
+      <DependentUpon>EmpresaProductorLink.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReasignationDialog.resx">
+      <DependentUpon>frmReasignationDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

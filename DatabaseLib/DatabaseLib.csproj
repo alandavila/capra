@@ -67,7 +67,9 @@
     <Compile Include="Chofer.cs" />
     <Compile Include="ChoferesDB.cs" />
     <Compile Include="Cliente.cs" />
+    <Compile Include="ClienteProductorDB.cs" />
     <Compile Include="ClientesDB.cs" />
+    <Compile Include="Par.cs" />
     <Compile Include="Productor.cs" />
     <Compile Include="ProductoresDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

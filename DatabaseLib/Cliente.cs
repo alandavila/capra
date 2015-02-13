@@ -16,6 +16,7 @@ namespace DatabaseLib
         private string rFC;
         //public List<string> choferes = new List<string>();
         public List<Chofer> choferes = new List<Chofer>();
+        public List<Productor> productores = new List<Productor>();
 
         public Cliente()
         {
