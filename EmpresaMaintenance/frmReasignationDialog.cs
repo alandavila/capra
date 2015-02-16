@@ -12,6 +12,31 @@ namespace EmpresaMaintenance
 {
     public partial class frmReasignationDialog : Form
     {
+        private int _Oldproductor_indx;
+        private int _Oldcliente_indx;
+        private int _Newproductor_indx;
+        private int _Newcliente_indx;
+
+        public int OldProductor_indx 
+        {
+            get { return _Oldproductor_indx; }
+            set { this._Oldproductor_indx = value; }
+        }
+        public int OldCliente_indx 
+        {
+            get { return _Oldcliente_indx; }
+            set { this._Oldcliente_indx = value; }
+        }
+        public int NewProductor_indx
+        {
+            get { return _Newproductor_indx; }
+            set { this._Newproductor_indx = value; }
+        }
+        public int NewCliente_indx
+        {
+            get { return _Newcliente_indx; }
+            set { this._Newcliente_indx = value; }
+        }
         public frmReasignationDialog()
         {
             InitializeComponent();
@@ -24,8 +49,9 @@ namespace EmpresaMaintenance
 
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            ClienteProductorDB.DeletEntry(1, 2);
-            ClienteProductorDB.AddEntry(3, 4);
+            ClienteProductorDB.DeletEntry(_Oldproductor_indx, _Oldcliente_indx);
+            ClienteProductorDB.AddEntry(_Newproductor_indx, _Newcliente_indx);
+            this.Close();
         }
     }
 }

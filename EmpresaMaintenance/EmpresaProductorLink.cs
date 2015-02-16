@@ -79,6 +79,8 @@ namespace EmpresaMaintenance
             {
                 productor_indx = int.Parse(this.cmbProductor.SelectedValue.ToString());
                 cliente_indx = int.Parse(this.cmbEmpresa.SelectedValue.ToString());
+                frmModificar.NewCliente_indx = cliente_indx;
+                frmModificar.NewProductor_indx = productor_indx;
                 //If the Generator exists in the tbljuncClientProd table, then:
                 //1) Warn the user and ask whether you want to reassign the Generador the residuos
                 Queried_Cliente_Productor = (from par in Cliente_Productor
@@ -87,8 +89,8 @@ namespace EmpresaMaintenance
                 if (Queried_Cliente_Productor.Count >= 1)
                 {
                     Par queriedClienteProductor = Queried_Cliente_Productor[0];
-                    int dbCliente = queriedClienteProductor.a;
-                    int dbProductor = queriedClienteProductor.b;
+                    frmModificar.OldCliente_indx = queriedClienteProductor.a;
+                    frmModificar.OldProductor_indx = queriedClienteProductor.b;
                     //2)    If yes : delete the current Productor-Generador assignation from the table and insert the new assignation
                     //      IF not : leave the table unchanged
                     DialogResult result = frmModificar.ShowDialog(this);
