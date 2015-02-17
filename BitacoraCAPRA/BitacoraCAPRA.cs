@@ -24,6 +24,7 @@ namespace BitacoraCAPRA
         SortedList<string,Cliente> listaClientes = new SortedList<string,Cliente>();
         List<Cliente> clientes = new List<Cliente>();
         List<Chofer> choferes = new List<Chofer>();
+        List<Par> productores_Numtambos;
 
         public BitacoraCAPRA()
         {
@@ -158,6 +159,10 @@ namespace BitacoraCAPRA
                 {
                     bitacora.BitacoraID = DatabaseLib.BitacoraDB.AddBitacora(bitacora);
                     this.DialogResult = DialogResult.OK;
+                    if (productores_Numtambos !=null && productores_Numtambos.Count >= 1) 
+                    {
+                        BitacoraProductorDB.AddEntry(bitacora.BitacoraID, _clienteID, _choferID, productores_Numtambos);
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -347,6 +352,42 @@ namespace BitacoraCAPRA
             EmpresaMaintenance.EmpresaProductorLink frmEmpresaProductorLink = new EmpresaMaintenance.EmpresaProductorLink();
             this.AddOwnedForm(frmEmpresaProductorLink);
             DialogResult result = frmEmpresaProductorLink.ShowDialog(this);
+        }
+
+        private void btnAgregar_Click(object sender, EventArgs e)
+        {
+            //verificat que un Cliente y chofer han sido seleccionados:
+            if (this.IsPresent(this.cmbEmpresa, "EMPRESA") == true && this.IsPresent(this.cmbChofer, "CHOFER") == true)
+            {
+                BitacoraProductorLink frmBitacoraProdLink = new BitacoraProductorLink();
+                //variable filled from database
+                List<Productor> productores = new List<Productor>();
+                this.AddOwnedForm(frmBitacoraProdLink);
+                //frmBitacoraProdLink.ClienteID = int.Parse(this.cmbEmpresa.SelectedValue.ToString());
+                //frmBitacoraProdLink.ChoferID = int.Parse(this.cmbChofer.SelectedValue.ToString());
+
+                //get productores from database, _clienteID has to be set before
+                productores = ProductoresDB.GetProductores(_clienteID);
+                //fill list view of frmBitacoraProdLink:
+                int i = 0;
+                foreach (Productor prod in productores)
+                {
+                    //default value of first column is cero, user can override it
+                    frmBitacoraProdLink.lvListView.Items.Add("0");
+                    frmBitacoraProdLink.lvListView.Items[i].SubItems.Add(prod.Nombre.Trim());
+                    frmBitacoraProdLink._ProdID.Add(int.Parse(prod.ProductorID));
+                    i++;
+                }
+                
+                DialogResult result = frmBitacoraProdLink.ShowDialog(this);
+                //get the values enterd in the form by the user
+                productores_Numtambos = frmBitacoraProdLink._Prod_tambos;
+            }
+            else 
+            {
+                MessageBox.Show("Favor de seleccionar un Chofer y una Empresa.");
+            }
+
         }
 
     }

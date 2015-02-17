@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Bitacora.cs" />
     <Compile Include="BitacoraDB.cs" />
+    <Compile Include="BitacoraProductorDB.cs" />
     <Compile Include="Chofer.cs" />
     <Compile Include="ChoferesDB.cs" />
     <Compile Include="Cliente.cs" />

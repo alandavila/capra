@@ -84,5 +84,53 @@ namespace DatabaseLib
 
             return Productores;
         }
+        //returns a list of producoter that are linked to a particular cliente
+        public static List<Productor> GetProductores(int clienteID)
+        {
+            List<Productor> Productores = new List<Productor>();
+            SqlConnection connection = RecoleccionDB.GetConnection();
+            //obtener productores 
+            string selectStatement = "SELECT tblProductores.ProductorID, tblProductores.Nombre,tblProductores.Direccion,tblProductores.CodigoPostal,tblProductores.Ciudad,tblProductores.Telefono, tblProductores.RFC"
+                                    + " ,tblClientes.ClientesID "
+                                    + " FROM tblProductores "
+                                    + " INNER JOIN tbljuncClientProd ON tblProductores.ProductorID = tbljuncClientProd.ProductorID "
+                                    + " INNER JOIN tblClientes ON tblClientes.ClientesID = tbljuncClientProd.ClientesID "
+                                    + " WHERE tblClientes.ClientesID = @clientesID "
+                                    + " ORDER BY tblProductores.Nombre";
+
+            SqlCommand selectCommand = new SqlCommand(selectStatement, connection);
+            selectCommand.Parameters.AddWithValue("@clientesID", clienteID);
+            try
+            {
+                connection.Open();
+                SqlDataReader reader = selectCommand.ExecuteReader();
+                Productor productor = new Productor();
+                while (reader.Read())
+                {
+                    productor = new Productor();
+                    productor.ProductorID = reader["ProductorID"].ToString();
+                    productor.Nombre = reader["Nombre"].ToString();
+                    productor.Direccion = reader["Direccion"].ToString();
+                    productor.CodigoPostal = reader["CodigoPostal"].ToString();
+                    productor.Ciudad = reader["Ciudad"].ToString();
+                    productor.Telefono = reader["Telefono"].ToString();
+                    productor.RFC = reader["RFC"].ToString();
+                    Productores.Add(productor);
+                }
+                reader.Close();
+
+            }
+            catch (SqlException ex)
+            {
+                //exception will be handled by the code where this class is used
+                throw ex;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return Productores;
+        }
     }
 }

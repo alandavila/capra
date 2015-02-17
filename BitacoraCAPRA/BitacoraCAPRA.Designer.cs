@@ -64,8 +64,9 @@
             this.mnuMaintenimientoNuevaEmpresa = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMantenimientoNuevoChofer = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMantenimientoNuevoProductor = new System.Windows.Forms.ToolStripMenuItem();
-            this.reporteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.assignarProductorEmpresaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reporteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnAgregar = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -220,7 +221,7 @@
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(157, 409);
+            this.btnGuardar.Location = new System.Drawing.Point(36, 409);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(120, 26);
             this.btnGuardar.TabIndex = 24;
@@ -387,7 +388,7 @@
             // 
             // btnReporte
             // 
-            this.btnReporte.Location = new System.Drawing.Point(291, 409);
+            this.btnReporte.Location = new System.Drawing.Point(186, 409);
             this.btnReporte.Name = "btnReporte";
             this.btnReporte.Size = new System.Drawing.Size(120, 26);
             this.btnReporte.TabIndex = 41;
@@ -420,29 +421,23 @@
             // mnuMaintenimientoNuevaEmpresa
             // 
             this.mnuMaintenimientoNuevaEmpresa.Name = "mnuMaintenimientoNuevaEmpresa";
-            this.mnuMaintenimientoNuevaEmpresa.Size = new System.Drawing.Size(165, 22);
+            this.mnuMaintenimientoNuevaEmpresa.Size = new System.Drawing.Size(239, 22);
             this.mnuMaintenimientoNuevaEmpresa.Text = "Nueva Empresa";
             this.mnuMaintenimientoNuevaEmpresa.Click += new System.EventHandler(this.mnuMaintenimientoNuevaEmpresa_Click);
             // 
             // mnuMantenimientoNuevoChofer
             // 
             this.mnuMantenimientoNuevoChofer.Name = "mnuMantenimientoNuevoChofer";
-            this.mnuMantenimientoNuevoChofer.Size = new System.Drawing.Size(165, 22);
+            this.mnuMantenimientoNuevoChofer.Size = new System.Drawing.Size(239, 22);
             this.mnuMantenimientoNuevoChofer.Text = "Nuevo Chofer";
             this.mnuMantenimientoNuevoChofer.Click += new System.EventHandler(this.mnuMantenimientoNuevoChofer_Click);
             // 
             // mnuMantenimientoNuevoProductor
             // 
             this.mnuMantenimientoNuevoProductor.Name = "mnuMantenimientoNuevoProductor";
-            this.mnuMantenimientoNuevoProductor.Size = new System.Drawing.Size(165, 22);
+            this.mnuMantenimientoNuevoProductor.Size = new System.Drawing.Size(239, 22);
             this.mnuMantenimientoNuevoProductor.Text = "Nuevo Productor";
             this.mnuMantenimientoNuevoProductor.Click += new System.EventHandler(this.mnuMantenimientoNuevoProductor_Click);
-            // 
-            // reporteToolStripMenuItem
-            // 
-            this.reporteToolStripMenuItem.Name = "reporteToolStripMenuItem";
-            this.reporteToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
-            this.reporteToolStripMenuItem.Text = "Reporte";
             // 
             // assignarProductorEmpresaToolStripMenuItem
             // 
@@ -451,12 +446,29 @@
             this.assignarProductorEmpresaToolStripMenuItem.Text = "Assignar Productor -> Empresa";
             this.assignarProductorEmpresaToolStripMenuItem.Click += new System.EventHandler(this.assignarProductorEmpresaToolStripMenuItem_Click);
             // 
+            // reporteToolStripMenuItem
+            // 
+            this.reporteToolStripMenuItem.Name = "reporteToolStripMenuItem";
+            this.reporteToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
+            this.reporteToolStripMenuItem.Text = "Reporte";
+            // 
+            // btnAgregar
+            // 
+            this.btnAgregar.Location = new System.Drawing.Point(334, 409);
+            this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.Size = new System.Drawing.Size(110, 25);
+            this.btnAgregar.TabIndex = 44;
+            this.btnAgregar.Text = "Agregar";
+            this.btnAgregar.UseVisualStyleBackColor = true;
+            this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
+            // 
             // BitacoraCAPRA
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(527, 485);
+            this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.btnReporte);
             this.Controls.Add(this.cmbChofer);
             this.Controls.Add(this.cmbEmpresa);
@@ -541,6 +553,7 @@
         private System.Windows.Forms.ToolStripMenuItem mnuMantenimientoNuevoProductor;
         private System.Windows.Forms.ToolStripMenuItem reporteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem assignarProductorEmpresaToolStripMenuItem;
+        private System.Windows.Forms.Button btnAgregar;
     }
 }
 
