@@ -43,6 +43,9 @@
             // 
             // lvListView
             // 
+            this.lvListView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.lvListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colFolio,
             this.colEmpresa,

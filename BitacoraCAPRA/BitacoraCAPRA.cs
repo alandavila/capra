@@ -390,5 +390,19 @@ namespace BitacoraCAPRA
 
         }
 
+        private void bitacorasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mnuReporteBitacoras_Click(object sender, EventArgs e)
+        {
+            frmReporteRecoleccion frmRecolection = new frmReporteRecoleccion();
+            this.AddOwnedForm(frmRecolection);
+            DialogResult result = frmRecolection.ShowDialog(this);
+
+        }
+
+
     }
 }
