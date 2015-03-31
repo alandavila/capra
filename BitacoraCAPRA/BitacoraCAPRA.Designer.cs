@@ -66,8 +66,11 @@
             this.mnuMantenimientoNuevoProductor = new System.Windows.Forms.ToolStripMenuItem();
             this.assignarProductorEmpresaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuReporte = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnAgregar = new System.Windows.Forms.Button();
             this.mnuReporteBitacoras = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuArchivo = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuArchivoExportarEXCEL = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuArchivoExportarACCESS = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnAgregar = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -401,7 +404,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mantenimientoToolStripMenuItem,
-            this.mnuReporte});
+            this.mnuReporte,
+            this.mnuArchivo});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(527, 24);
@@ -455,6 +459,35 @@
             this.mnuReporte.Size = new System.Drawing.Size(60, 20);
             this.mnuReporte.Text = "Reporte";
             // 
+            // mnuReporteBitacoras
+            // 
+            this.mnuReporteBitacoras.Name = "mnuReporteBitacoras";
+            this.mnuReporteBitacoras.Size = new System.Drawing.Size(152, 22);
+            this.mnuReporteBitacoras.Text = "Bitacoras";
+            this.mnuReporteBitacoras.Click += new System.EventHandler(this.mnuReporteBitacoras_Click);
+            // 
+            // mnuArchivo
+            // 
+            this.mnuArchivo.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnuArchivoExportarEXCEL,
+            this.mnuArchivoExportarACCESS});
+            this.mnuArchivo.Name = "mnuArchivo";
+            this.mnuArchivo.Size = new System.Drawing.Size(60, 20);
+            this.mnuArchivo.Text = "Archivo";
+            // 
+            // mnuArchivoExportarEXCEL
+            // 
+            this.mnuArchivoExportarEXCEL.Name = "mnuArchivoExportarEXCEL";
+            this.mnuArchivoExportarEXCEL.Size = new System.Drawing.Size(171, 22);
+            this.mnuArchivoExportarEXCEL.Text = "Exportar a EXCEL";
+            this.mnuArchivoExportarEXCEL.Click += new System.EventHandler(this.mnuArchivoExportarEXCEL_Click);
+            // 
+            // mnuArchivoExportarACCESS
+            // 
+            this.mnuArchivoExportarACCESS.Name = "mnuArchivoExportarACCESS";
+            this.mnuArchivoExportarACCESS.Size = new System.Drawing.Size(171, 22);
+            this.mnuArchivoExportarACCESS.Text = "Exportar a ACCESS";
+            // 
             // btnAgregar
             // 
             this.btnAgregar.Location = new System.Drawing.Point(334, 409);
@@ -464,13 +497,6 @@
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
-            // 
-            // mnuReporteBitacoras
-            // 
-            this.mnuReporteBitacoras.Name = "mnuReporteBitacoras";
-            this.mnuReporteBitacoras.Size = new System.Drawing.Size(152, 22);
-            this.mnuReporteBitacoras.Text = "Bitacoras";
-            this.mnuReporteBitacoras.Click += new System.EventHandler(this.mnuReporteBitacoras_Click);
             // 
             // BitacoraCAPRA
             // 
@@ -565,6 +591,9 @@
         private System.Windows.Forms.ToolStripMenuItem assignarProductorEmpresaToolStripMenuItem;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.ToolStripMenuItem mnuReporteBitacoras;
+        private System.Windows.Forms.ToolStripMenuItem mnuArchivo;
+        private System.Windows.Forms.ToolStripMenuItem mnuArchivoExportarEXCEL;
+        private System.Windows.Forms.ToolStripMenuItem mnuArchivoExportarACCESS;
     }
 }
 

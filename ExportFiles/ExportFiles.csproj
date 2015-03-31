@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{6EDF4930-EF75-4F2F-9B65-10D63509B9E7}</ProjectGuid>
+    <ProjectGuid>{25538C4B-67BD-4C25-89EF-C195444E27C8}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BitacoraCAPRA</RootNamespace>
-    <AssemblyName>BitacoraCAPRA</AssemblyName>
+    <RootNamespace>ExportFiles</RootNamespace>
+    <AssemblyName>ExportFiles</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -36,7 +36,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.SqlXml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,25 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BitacoraCAPRA.cs">
+    <Compile Include="frmExportExcel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BitacoraCAPRA.Designer.cs">
-      <DependentUpon>BitacoraCAPRA.cs</DependentUpon>
-    </Compile>
-    <Compile Include="BitacoraProductorLink.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="BitacoraProductorLink.Designer.cs">
-      <DependentUpon>BitacoraProductorLink.cs</DependentUpon>
+    <Compile Include="frmExportExcel.Designer.cs">
+      <DependentUpon>frmExportExcel.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="BitacoraCAPRA.resx">
-      <DependentUpon>BitacoraCAPRA.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="BitacoraProductorLink.resx">
-      <DependentUpon>BitacoraProductorLink.cs</DependentUpon>
+    <EmbeddedResource Include="frmExportExcel.resx">
+      <DependentUpon>frmExportExcel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -76,7 +66,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -88,33 +77,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ChoferMaintenance\ChoferMaintenance.csproj">
-      <Project>{7ADFA072-5A75-4AC9-A4AF-067B2E8287BC}</Project>
-      <Name>ChoferMaintenance</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DatabaseLib\DatabaseLib.csproj">
       <Project>{4DB28598-225B-4C55-92A1-EAC19652CE07}</Project>
       <Name>DatabaseLib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EmpresaMaintenance\EmpresaMaintenance.csproj">
-      <Project>{D91C7471-E826-48DA-8C21-FFB204C9E84A}</Project>
-      <Name>EmpresaMaintenance</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ExportFiles\ExportFiles.csproj">
-      <Project>{25538C4B-67BD-4C25-89EF-C195444E27C8}</Project>
-      <Name>ExportFiles</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ProductorMaintenance\ProductorMaintenance.csproj">
-      <Project>{5CD8ABA6-559E-4452-819B-B35627F6DE36}</Project>
-      <Name>ProductorMaintenance</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ReporteRecoleccion\ReporteRecoleccion.csproj">
-      <Project>{9D520FA2-5B77-477A-B603-981073B763AB}</Project>
-      <Name>ReporteRecoleccion</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\ValidationLib\ValidationLib.csproj">
-      <Project>{A512066A-3A8F-44F8-80DD-1D8B1854F220}</Project>
-      <Name>ValidationLib</Name>
+    <ProjectReference Include="..\ExportLib\ExportLib.csproj">
+      <Project>{2841EEF7-1A43-4507-A3EA-2737B1B80AB8}</Project>
+      <Name>ExportLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

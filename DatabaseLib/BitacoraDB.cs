@@ -121,6 +121,118 @@ namespace DatabaseLib
             return Bitacoras;
 
         }
+        //get a list of bitacoras ordered by Client's name and date of bitacora generation
+        public static List<Bitacora> GetSortedBitacoras()
+        {
+            List<Bitacora> Bitacoras = new List<Bitacora>();
+            SqlConnection connection = RecoleccionDB.GetConnection();
+            string strSelect =
+                  " SELECT tblBitacoras.BitacorasID,tblBitacoras.ClientesID"
+                + ",tblBitacoras.CamionNum,tblBitacoras.NumS,tblBitacoras.HrEntrada"
+                + ",tblBitacoras.HrSalida, tblBitacoras.Observaciones,tblBitacoras.CantidadTambos"
+                + ",tblBitacoras.Dia,tblBitacoras.Mes,tblBitacoras.Ano"
+                + ",tblBitacoras.PrecioUnitario,tblBitacoras.Subtotal,tblBitacoras.IVA,tblBitacoras.Total"
+                + ",tblBitacoras.Fecha"
+                + ",tblClientes.Nombre,tblChoferes.Nombre AS ChofiName"
+                + " ,tblChoferes.ChoferID AS IDchofer"
+                + " FROM tblBitacoras"
+                + " LEFT JOIN tblClientes ON tblBitacoras.ClientesID = tblClientes.ClientesID "
+                + " LEFT JOIN tblChoferes ON tblBitacoras.ChoferID = tblChoferes.ChoferID"
+                + " ORDER BY tblClientes.Nombre DESC, tblBitacoras.Fecha ASC";
+
+            SqlCommand cmdGetbitacoras = new SqlCommand(strSelect, connection);
+            string directoryPath = Properties.Settings.Default.FolderReciclados;
+            string filePath = @directoryPath + "BitacoraErase.txt";
+            FileStream fs = null;
+            StreamWriter textOut = null;
+
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+            try
+            {
+                fs = new FileStream(filePath, FileMode.Create, FileAccess.Write);
+                textOut = new StreamWriter(fs);
+
+                try
+                {
+                    connection.Open();
+                    SqlDataReader reader = cmdGetbitacoras.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Bitacora bitacora = new Bitacora();
+                        // bitacora.BitacoraID = (int)reader["BitacorasID"];
+                        bitacora.BitacoraID = int.Parse(reader["BitacorasID"].ToString());
+                        bitacora.Folio = 0;
+                        bitacora.ClienteID = int.Parse(reader["ClientesID"].ToString());
+                        textOut.WriteLine("*****************************************************");
+                        textOut.WriteLine("BitacoraID:                " + reader["BitacorasID"].ToString());
+                        textOut.WriteLine("ClienteID:                 " + reader["ClientesID"].ToString());
+                        textOut.WriteLine("Cliente Nombre:            " + reader["Nombre"].ToString());
+                        textOut.WriteLine("ChoferID:                  " + reader["IDchofer"].ToString());
+                        textOut.WriteLine("Chofer Nombre:             " + reader["ChofiName"].ToString());
+                        textOut.WriteLine("Num Tambos:                " + reader["CantidadTambos"].ToString());
+                        textOut.WriteLine("Num Total:                 " + reader["Total"].ToString());
+                        textOut.WriteLine("Hora Entrada:              " + reader["HrEntrada"].ToString());
+                        textOut.WriteLine("Fecha:                     " + reader["Fecha"].ToString());
+
+                        //if(reader["choferID"]!= null)
+                        bitacora.ChoferID = int.Parse(reader["IDchofer"].ToString().Trim());
+                        bitacora.NumCamion = int.Parse(reader["CamionNum"].ToString());
+                        bitacora.NS = int.Parse(reader["NumS"].ToString());
+                        bitacora.HoraEntrada = reader["HrEntrada"].ToString();
+                        bitacora.HoraSalida = reader["HrSalida"].ToString();
+                        bitacora.NumTambos = int.Parse(reader["CantidadTambos"].ToString());
+                        bitacora.Observaciones = reader["Observaciones"].ToString();
+                        bitacora.Dia = int.Parse(reader["Dia"].ToString());
+                        bitacora.Mes = int.Parse(reader["Mes"].ToString());
+                        bitacora.Year = int.Parse(reader["Ano"].ToString());
+                        bitacora.PrecioUnitario = double.Parse(reader["PrecioUnitario"].ToString());
+                        bitacora.Iva = double.Parse(reader["IVA"].ToString());
+                        bitacora.Total = double.Parse(reader["Total"].ToString());
+                        bitacora.Chofer = reader["ChofiName"].ToString();
+                        bitacora.Empresa = reader["Nombre"].ToString();
+                        bitacora.Fecha = DateTime.Parse(reader["Fecha"].ToString());
+
+                        Bitacoras.Add(bitacora);
+                    }
+                    reader.Close();
+                    textOut.Close();
+                }
+                catch (Exception ex)
+                {
+                    //external code will take care of exception
+                    throw ex;
+                }
+                finally
+                {
+                    connection.Close();
+                }
+            }
+            catch (FileNotFoundException)
+            {
+                System.Windows.Forms.MessageBox.Show(filePath + " no fue encontrado.", "Archivo No Encontrado");
+
+            }
+            catch (DirectoryNotFoundException)
+            {
+                System.Windows.Forms.MessageBox.Show(directoryPath + " no fue encontrado.", "Directorio No Enconstrado");
+            }
+            catch (IOException ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message + "Problemas con la creacion del archivo.", "IOException: Problemas con la creacion del archivo");
+            }
+            finally
+            {
+                if (fs != null)
+                    fs.Close();
+
+            }
+            return Bitacoras;
+
+        }
         //get bitacora by BitacorasID, change later to folio!!s
         public static Bitacora GetBitacora(int BitacoraID)
         {

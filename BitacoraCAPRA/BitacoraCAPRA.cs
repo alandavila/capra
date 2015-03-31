@@ -403,6 +403,13 @@ namespace BitacoraCAPRA
 
         }
 
+        private void mnuArchivoExportarEXCEL_Click(object sender, EventArgs e)
+        {
+            ExportFiles.frmExportExcel frmExportExcel = new ExportFiles.frmExportExcel();
+            this.AddOwnedForm(frmExportExcel);
+            DialogResult result = frmExportExcel.ShowDialog(this);
+        }
+
 
     }
 }
