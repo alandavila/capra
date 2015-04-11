@@ -14,20 +14,46 @@ namespace ExportLib
         Excel.Worksheet xlWorkSheet = null;
         Excel.Range xlRange  = null;
         object misValue = System.Reflection.Missing.Value;
+
+        private List<String> _header = new List<String>() 
+            {
+                "EMPRESA","LUNES","MARTES","MIÉRCOLES","JUEVES","VIERNES","SÁBADO","TAMBOS","   ",   "   "
+            };
+
         public XportExcel() 
         { 
         }
-        public void CreateReportSkeleton(string initialdate, string finaldate,List<String> empresas) 
+        public void CreateReportSkeleton(DateTime initialdate, DateTime finaldate,List<String> empresas) 
         {
             //place of first schedule entry//header is two rows above, one column to the right
             int iniRow = 3;
             int iniCol = 3;
-            int week_count = 0;
-            int weeks = 3;
-            List<String> header = new List<String>() 
+            //initial day of the week for putting dates on report:
+            int day_of_week;
+            TimeSpan NumWeeks;
+            int reportWeeks = 0;
+            int weekCount = 0;
+
+            //start on next monday if initial date lands on Sunday:
+            if (initialdate.DayOfWeek == DayOfWeek.Sunday) 
             {
-                "EMPRESA","LUNES","MARTES","MIÉRCOLES","JUEVES","VIERNES","SÁBADO","TAMBOS","   ","   "
-            };
+                initialdate = initialdate.AddDays(1);
+            }
+            //Sunday = 0, Monday =1, ....Saturday = 6
+            day_of_week = (int)initialdate.DayOfWeek;
+            NumWeeks = finaldate.Subtract(initialdate);
+            reportWeeks = NumWeeks.Days / 7;
+
+            //check that the initial and final dates are not the same
+            if (initialdate == finaldate) 
+            {
+                MessageBox.Show("La fecha inicial y final del reporte coinciden...");
+                return;
+            }
+
+            DateTime queryDate = initialdate;
+            //query database to get data for report
+
             //create Excel application
             xlApp = new Microsoft.Office.Interop.Excel.Application();
             //make sure application could be created
@@ -40,27 +66,44 @@ namespace ExportLib
             //add a workbook to Excel application
             xlWorkBook = xlApp.Workbooks.Add(misValue);
             xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+            //add header
             xlWorkSheet.Cells[iniRow -2   , iniCol+1] = "REPORTE DIARIO DE DISPOSICIÓN ESCAMOCHA";
             setColumnsWidth(14);
             //add empresas to spreasheet
-            int i = iniRow+1,j = iniCol;
+            int i = iniRow+2,j = 0;
             foreach (String empresa in empresas) 
             {
-                xlWorkSheet.Cells[i, j] = empresa.ToString();
+                xlWorkSheet.Cells[i, iniCol] = empresa.ToString();
                 i++;
             }
-
-            while (week_count < weeks)
+            //add header for each week including date for each week day:
+            while (weekCount <= reportWeeks)
             {
-                foreach (string headerelement in header)
+                foreach (string headerelement in _header)
                 {
-                    xlWorkSheet.Cells[iniRow, j] = headerelement.ToString();
+                    xlWorkSheet.Cells[iniRow, j+iniCol] = headerelement.ToString();
+                    if (j >= day_of_week && headerelement != "EMPRESA" && headerelement != "TAMBOS" && headerelement != "   ")
+                    {
+                        xlWorkSheet.Cells[iniRow + 1, j+iniCol] = queryDate.ToString();
+                        //loop over empresasa and query number of tambos per date
+                        //
+                        //
+                        if (headerelement == "SÁBADO")
+                        {
+                            queryDate = queryDate.AddDays(2);
+                        }
+                        else
+                        {
+                            queryDate = queryDate.AddDays(1);
+                        }
+                    }
                     j++;
                 }
-                week_count++;
+                weekCount++;
             }
 
-            xlRange = xlWorkSheet.get_Range("c5", "c6");
+            //beautify report:
+            xlRange = xlWorkSheet.get_Range("c5", "c8");
             xlRange.BorderAround(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlMedium, Excel.XlColorIndex.xlColorIndexAutomatic, Excel.XlColorIndex.xlColorIndexAutomatic);
             //temporal save here
             SaveReport(@"C:\Reciclados\Reciclados.xls");

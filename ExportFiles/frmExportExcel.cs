@@ -36,7 +36,7 @@ namespace ExportFiles
 
             _initialDate = this.fechaInicial.Value.Date;
             _finalDate = this.fechaFinal.Value.Date;
-            xportExcel.CreateReportSkeleton("bla","bla",listaClientes);
+            xportExcel.CreateReportSkeleton(_initialDate, _finalDate, listaClientes);
         }
     }
 }
